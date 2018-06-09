@@ -13,10 +13,9 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  salir()
-  {
+  salir() {
     localStorage.setItem('token', null);
-    //window.alert('Chauuuuuu!!!');
+    // window.alert('Chauuuuuu!!!');
     this.router.navigate(['/login']);
   }
 

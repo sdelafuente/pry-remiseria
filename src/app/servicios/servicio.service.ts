@@ -10,27 +10,23 @@ import { AuthHttp } from 'angular2-jwt';
 @Injectable()
 export class ServicioService {
 
-      url: string = 'http://localhost/api';
+      url = 'http://localhost/api';
+      // url = 'https://proyectocuatro.000webhostapp.com/api'
 
-      constructor(public http: Http, private authHttp: AuthHttp)
-      {
-
-      }
+      constructor(public http: Http, private authHttp: AuthHttp) { }
 
       /**
        * Metodo HTTP nativo
        * @param user
        */
-      get(user: Object)
-      {
+      get(user: Object) {
         return this.http.get(this.url, user)
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );
       }
 
-      postLogin(user: Object, ruta : string)
-      {
+      postLogin(user: Object, ruta: string) {
         return this.http.post(this.url + ruta, user)
         .toPromise()
         .then( this.extractData )
@@ -42,8 +38,7 @@ export class ServicioService {
        * Para hacer peticines autenticado.
        * @param user
        */
-      getJwt(url, user: Object)
-      {
+      getJwt(url, user: Object) {
         return this.authHttp.get(url, user)
         .toPromise()
         .then( this.extractData )
@@ -51,7 +46,7 @@ export class ServicioService {
       }
 
       private extractData(res: Response) {
-        let body = res.json();
+        const body = res.json();
 
         return body || { };
       }
@@ -66,8 +61,8 @@ export class ServicioService {
         } else {
           errMsg = error.message ? error.message : error.toString();
         }
-        //console.error( errMsg );
-        //console.error( 'CATCH' );
+        // console.error( errMsg );
+        // console.error( 'CATCH' );
         return Observable.throw(errMsg);
       }
 

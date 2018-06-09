@@ -9,11 +9,10 @@ import { ServicioService } from '../servicios/servicio.service';
 // import 'rxjs/add/operator/toPromise';
 
 export class User {
-  public email: string = '';
-  public clave: string = '';
+  public email = '';
+  public clave = '';
 
-  constructor( email: string, clave: string)
-  {
+  constructor( email: string, clave: string) {
     this.email = email;
     this.clave = clave;
   }
@@ -24,49 +23,53 @@ export class User {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
 export class LoginComponent implements OnInit {
 
   // public form:FormGroup;
   // public email:AbstractControl;
   // public password:AbstractControl;
   // public submitted:boolean = false;
-  user: User = new User('','');
-  //url: string = 'http://localhost:8080/servidor/jwt/';
-  isCondition : boolean = false;
+  user: User = new User('', '');
+  // url: string = 'http://localhost:8080/servidor/jwt/';
+  isCondition = false;
 
-  ruta : string;
+  ruta: string;
 
   constructor( private router: Router, private ws: ServicioService) {
     this.user.email = '';
     // console.log(this.user);
-
   }
 
   ngOnInit() {
+      this.isCondition = false;
   }
 
-  function(bool)
-  {
+  function(bool) {
         this.isCondition = true;
-      if(bool){
+      if (bool) {
         this.ruta = '/usuario/';
-      }else{
+      } else {
         this.ruta = '/cliente/';
       }
   }
-  enviar()
-  {
+
+  enviar() {
     this.ws.postLogin( this.user, this.ruta )
     .then( data => {
-        //console.log(data);
+        // console.log(data);
         if ( data.token ) {
             localStorage.setItem('token', data.token);
-            this.router.navigateByUrl("/inicio");
+            this.router.navigateByUrl('/inicio');
         }
     })
     .catch( e => {
       console.log(e);
     } );
+  }
+
+  llegar() {
+      alert(1);
   }
 
 }
