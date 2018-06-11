@@ -18,7 +18,6 @@ import { ServicioService } from './servicios/servicio.service';
 import { AuthService } from './servicios/auth.service';
 import { VerificarJWTService } from './servicios/verificar-jwt.service';
 
-
 import { DirectionsMapDirective } from './google-map.directive';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 
@@ -26,7 +25,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent   },
   { path: 'inicio', component: InicioComponent, canActivate: [VerificarJWTService] },
-  {path: 'viajes', component: AbmViajesComponent, canActivate: [VerificarJWTService] },
+  { path: 'viajes', component: AbmViajesComponent, canActivate: [VerificarJWTService] },
   // { path: 'viajes', component: AbmViajesComponent   },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }
@@ -55,10 +54,7 @@ const appRoutes: Routes = [
     HttpModule,
     JwtModule,
     RouterModule.forRoot(appRoutes),
-    NgxCaptchaModule.forRoot({
-         reCaptcha2SiteKey: '6LeFR14UAAAAAEY8fJPkrNEV9PNDmoQgV708jdhZ',
-         invisibleCaptchaSiteKey: '6LeFR14UAAAAANm-UVnOHGy1T_BZJ_8tfzSWFRqZ'
-     })
+    NgxCaptchaModule.forRoot({  reCaptcha2SiteKey: '6LeFR14UAAAAAEY8fJPkrNEV9PNDmoQgV708jdhZ'  })
   ],
   providers: [
     ServicioService,

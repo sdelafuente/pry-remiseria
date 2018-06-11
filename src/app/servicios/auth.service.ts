@@ -16,8 +16,8 @@ export class AuthService {
 
     public isLogued() {
         try {
-          // console.log( 'is logued', tokenNotExpired());
-          const rta = tokenNotExpired() || true;
+           // console.log( 'is logued', tokenNotExpired());
+          const rta = tokenNotExpired(); // || true;
           return rta;
         } catch (error) {
           return false;
