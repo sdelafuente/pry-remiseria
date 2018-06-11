@@ -14,7 +14,8 @@ export class MenuComponent implements OnInit {
   }
 
   salir() {
-    localStorage.setItem('token', null);
+    // localStorage.setItem('token', null);
+    localStorage.clear();
     // window.alert('Chauuuuuu!!!');
     this.router.navigate(['/login']);
   }

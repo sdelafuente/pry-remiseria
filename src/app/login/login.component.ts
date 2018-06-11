@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicioService } from '../servicios/servicio.service';
@@ -18,6 +18,8 @@ export class User {
   }
 }
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,11 +32,14 @@ export class LoginComponent implements OnInit {
   // public email:AbstractControl;
   // public password:AbstractControl;
   // public submitted:boolean = false;
+  @Input() captchaElem: any;
+
   user: User = new User('', '');
   // url: string = 'http://localhost:8080/servidor/jwt/';
   isCondition = false;
-
   ruta: string;
+  tokenCaptcha: string;
+
 
   constructor( private router: Router, private ws: ServicioService) {
     this.user.email = '';
@@ -55,21 +60,33 @@ export class LoginComponent implements OnInit {
   }
 
   enviar() {
-    this.ws.postLogin( this.user, this.ruta )
-    .then( data => {
-        // console.log(data);
-        if ( data.token ) {
-            localStorage.setItem('token', data.token);
-            this.router.navigateByUrl('/inicio');
-        }
-    })
-    .catch( e => {
-      console.log(e);
-    } );
+      this.tokenCaptcha = localStorage.getItem('token_captcha');
+
+      if (this.tokenCaptcha !== 'null') {
+          this.ws.postLogin( this.user, this.ruta )
+          .then( data => {
+              // console.log(data);
+              if ( data.token ) {
+                  localStorage.setItem('token', data.token);
+                  this.router.navigateByUrl('/inicio');
+              }
+          })
+          .catch( e => {
+            console.log(e);
+          } );
+      }
+
   }
 
   llegar() {
       alert(1);
   }
 
+  private handleSuccess(recaptchaSuccess: any) {
+      localStorage.setItem('token_captcha', recaptchaSuccess);
+  }
+
+  private handleLoad() {
+      localStorage.setItem('token_captcha', null);
+  }
 }

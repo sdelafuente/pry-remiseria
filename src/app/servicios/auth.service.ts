@@ -6,64 +6,58 @@ import { Router } from '@angular/router';
 export class AuthService {
 
 
-      public name: string;
-      private _token: string;
-      jwtHelper: JwtHelper = new JwtHelper();
+    public name: string;
+    private _token: string;
+    jwtHelper: JwtHelper = new JwtHelper();
 
-      constructor( private router: Router ) {
+    constructor( private router: Router ) {
         this._token = localStorage.getItem('token');
-      }
+    }
 
-      public isLogued()
-      {
+    public isLogued() {
         try {
           // console.log( 'is logued', tokenNotExpired());
-          let rta = tokenNotExpired() || true;
+          const rta = tokenNotExpired() || true;
           return rta;
         } catch (error) {
           return false;
         }
-      }
+    }
 
-      public getToken ()
-      {
-        try {
-          //console.log('getToekn', this.jwtHelper.decodeToken(this._token));
-          return this.jwtHelper.decodeToken(this._token);
-        } catch (error) {
-          return undefined;
-        }
-      }
+    public getToken () {
+    try {
+      // console.log('getToekn', this.jwtHelper.decodeToken(this._token));
+      return this.jwtHelper.decodeToken(this._token);
+    } catch (error) {
+      return undefined;
+    }
+    }
 
-      public getExpirationDate()
-      {
+    public getExpirationDate() {
 
         try {
-          //console.log('getExpirationDate', this.jwtHelper.getTokenExpirationDate(this._token))
+          // console.log('getExpirationDate', this.jwtHelper.getTokenExpirationDate(this._token))
           return this.jwtHelper.getTokenExpirationDate(this._token);
         } catch (error) {
           return null;
         }
-      }
+    }
 
-      public logOut()
-      {
+    public logOut() {
         try {
           localStorage.setItem('token', null);
           this.router.navigate(['/login']);
         } catch (error) {
           return false;
         }
-      }
+    }
 
-      public getNivel ()
-      {
+    public getNivel () {
         // console.log(this.jwtHelper.decodeToken(this._token));
-        if (this.jwtHelper.decodeToken(this._token).nivel || this.jwtHelper.decodeToken(this._token).nivel === 0)
+        if (this.jwtHelper.decodeToken(this._token).nivel || this.jwtHelper.decodeToken(this._token).nivel === 0) {
           return this.jwtHelper.decodeToken(this._token).nivel;
-        else
+        } else {
           return 1000;
-
-      }
-
+        }
+    }
 }

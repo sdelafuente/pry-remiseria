@@ -5,8 +5,21 @@ import { AgmCoreModule, MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
 import { DirectionsMapDirective } from '../google-map.directive';
 import {} from '@types/googlemaps';
 
+
 declare var google: any;
 declare var jQuery: any;
+
+export class Viaje {
+  public origenLat = '';
+  public origenLng = '';
+  public destinoLat = '';
+  public destinoLng = '';
+  public fecha = '';
+  public metodoPago = '';
+
+
+  constructor() { }
+}
 
 @Component({
   selector: 'app-abm-viajes',
@@ -17,14 +30,22 @@ declare var jQuery: any;
 export class AbmViajesComponent implements OnInit {
 
     public latitude: number;
-       public longitude: number;
-       public destinationInput: FormControl;
-       public destinationOutput: FormControl;
-       public zoom: number;
-       public iconurl: string;
-       public mapCustomStyles: any;
-       public estimatedTime: any;
-       public estimatedDistance: any;
+    public longitude: number;
+    public destinationInput: FormControl;
+    public destinationOutput: FormControl;
+    public zoom: number;
+    public iconurl: string;
+    public mapCustomStyles: any;
+    public estimatedTime: any;
+    public estimatedDistance: any;
+    public startDate: any;
+    public fechaViaje: any;
+    public metodoPago: any;
+    private origenLat: any;
+    private origenLng: any;
+    private destinoLat: any;
+    private destinoLng: any;
+    private objViaje: Viaje;
 
        @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
@@ -43,13 +64,20 @@ export class AbmViajesComponent implements OnInit {
          private gmapsApi: GoogleMapsAPIWrapper,
          private _elementRef: ElementRef
        ) {
+           const date = new Date();
+           const year = date.getFullYear();
+           const month = date.getMonth();
+           const day = date.getDay();
+
+           this.startDate = new Date(year, month, day);
        }
 
        ngOnInit() {
+           this.objViaje = new Viaje();
          // set google maps defaults
          this.zoom = 4;
-         this.latitude = 39.8282;
-         this.longitude = -98.5795;
+         this.latitude = -34.603722;
+         this.longitude = -58.381592;
 
          this.iconurl = '../image/map-icon.png';
 
@@ -57,8 +85,9 @@ export class AbmViajesComponent implements OnInit {
          // create search FormControl
          this.destinationInput = new FormControl();
          this.destinationOutput = new FormControl();
+
          // set current position
-         this.setCurrentPosition();
+         // this.setCurrentPosition();
 
          // load Places Autocomplete
          this.mapsAPILoader.load().then(() => {
@@ -90,18 +119,31 @@ export class AbmViajesComponent implements OnInit {
                  } else {
                      this.vc.destination = {
                          longitude: place.geometry.location.lng(),
-                         latitude: place.geometry.location.lat() }; // its a example aleatory position
+                         latitude: place.geometry.location.lat()
+                     }; // its a example aleatory position
                      this.vc.destinationPlaceId = place.place_id;
                  }
 
-                 if (this.vc.directionsDisplay === undefined) { this.mapsAPILoader.load().then(() => {
-                       this.vc.directionsDisplay = new google.maps.DirectionsRenderer;
+                 if (this.vc.directionsDisplay === undefined) {
+                        this.mapsAPILoader.load().then(() => {
+                         this.vc.directionsDisplay = new google.maps.DirectionsRenderer;
                      });
                }
 
                  // Update the directions
                  this.vc.updateDirections();
                  this.zoom = 12;
+                 // this.getDistanceAndDuration();
+
+                 if (this.vc.destination !== undefined ) {
+                    this.origenLat = this.vc.origin.latitude;
+                    this.origenLng = this.vc.origin.longitude;
+                    this.destinoLat = this.vc.destination.latitude;
+                    this.destinoLng = this.vc.destination.longitude;
+                 }
+
+                 // this.estimatedTime = localStorage.getItem('duracion');
+                 // this.estimatedTime = '1000 km';
                });
 
             });
@@ -141,4 +183,14 @@ export class AbmViajesComponent implements OnInit {
          // Write your Google Map Custom Style Code Here.
        }
 
+       Enviar() {
+           this.objViaje.origenLat = this.origenLat;
+           this.objViaje.origenLng = this.origenLng;
+           this.objViaje.destinoLat = this.destinoLat;
+           this.objViaje.destinoLng = this.destinoLng;
+           this.objViaje.metodoPago = this.metodoPago;
+           this.objViaje.fecha = this.fechaViaje;
+
+           console.log(this.objViaje);
+       }
 }

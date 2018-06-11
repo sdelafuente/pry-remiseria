@@ -4,6 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { VerificarJWTService } from './servicios/verificar-jwt.service';
 
 
 import { DirectionsMapDirective } from './google-map.directive';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 
 const appRoutes: Routes = [
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     ErrorComponent,
     MenuComponent,
     AbmViajesComponent,
-    DirectionsMapDirective
+    DirectionsMapDirective,
+    DatePickerComponent
   ],
   imports: [
       AgmCoreModule.forRoot({
@@ -51,7 +54,11 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     JwtModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxCaptchaModule.forRoot({
+         reCaptcha2SiteKey: '6LeFR14UAAAAAEY8fJPkrNEV9PNDmoQgV708jdhZ',
+         invisibleCaptchaSiteKey: '6LeFR14UAAAAANm-UVnOHGy1T_BZJ_8tfzSWFRqZ'
+     })
   ],
   providers: [
     ServicioService,

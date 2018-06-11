@@ -1,11 +1,22 @@
-<div class="form-group">
-  <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off"
-  type="text" class="form-control" #pickupInput [formControl]="destinationInput">
+<div class="col-md-8 bg-secondary rounded">
+    <div class="form-group">
+        <input placeholder="Origen" autocorrect="off" autocapitalize="off" spellcheck="off"
+        type="text" class="form-control" #pickupInput [formControl]="destinationInput">
 
-  <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off"
-  type="text" class="form-control" #pickupOutput [formControl]="destinationOutput">
+        <input placeholder="Destino" autocorrect="off" autocapitalize="off" spellcheck="off"
+        type="text" class="form-control" #pickupOutput [formControl]="destinationOutput">
+        <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local" min="startDate"/>
+
+        <select class="custom-select" [(ngModel)]="metodoPago">
+            <option value="-1" selected="selected">Seleccione modo de pago...</option>
+            <option value="0">Efectivo</option>
+            <option value="1">Débito</option>
+            <option value="2">Crédito</option>
+        </select>
+        <agm-map [latitude]="latitude" [longitude]="longitude" >
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+            <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
+        </agm-map>
+        <button type="button" class="btn bg-primary" name="guardar" (click)="Enviar()" value="Solicitar">Solicitar</button>
+    </div>
 </div>
-<agm-map [latitude]="latitude" [longitude]="longitude" >
-    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-    <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
-</agm-map>
