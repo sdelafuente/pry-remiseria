@@ -19,7 +19,6 @@ import { AuthService } from './servicios/auth.service';
 import { VerificarJWTService } from './servicios/verificar-jwt.service';
 
 import { DirectionsMapDirective } from './google-map.directive';
-import { DatePickerComponent } from './date-picker/date-picker.component';
 
 
 const appRoutes: Routes = [
@@ -40,8 +39,7 @@ const appRoutes: Routes = [
     ErrorComponent,
     MenuComponent,
     AbmViajesComponent,
-    DirectionsMapDirective,
-    DatePickerComponent
+    DirectionsMapDirective
   ],
   imports: [
       AgmCoreModule.forRoot({

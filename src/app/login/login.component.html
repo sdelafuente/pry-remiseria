@@ -1,8 +1,12 @@
 
 <div class="row">
     <div class="col-sm-12" *ngIf="!isCondition">
+        <!--button type="button" class="btn btn-default btn-auth" (click)="function(0)" >Cliente</button>
+        <button type="button" class="btn btn-default btn-auth" (click)="function(1)" >Usuario</button-->
+        <button type="button" class="btn btn-default btn-auth" (click)="admin(1)" >Admin</button>
+        <button type="button" class="btn btn-default btn-auth" (click)="remisero()" >Remisero</button>
+        <button type="button" class="btn btn-default btn-auth" (click)="encargado()" >Encargado</button>
         <button type="button" class="btn btn-default btn-auth" (click)="function(0)" >Cliente</button>
-        <button type="button" class="btn btn-default btn-auth" (click)="function(1)" >Usuario</button>
     </div>
     <div class="col-sm-8">
         <form  *ngIf="isCondition" (ngSubmit)="enviar()" class="form-horizontal">
@@ -38,6 +42,7 @@
         <div class="form-group row">
             <div class="col-sm-8">
               <button type="submit" class="btn btn-default btn-auth" >Ingresar</button>
+              <button type="button" class="btn btn-default btn-auth" (click)="cancelar()" >Cancelar</button>
               <!--<a routerLink="/login" class="forgot-pass">Olvido el password?</a>-->
             </div>
           </div>

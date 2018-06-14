@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
   tokenCaptcha: string;
 
 
+
   constructor( private router: Router, private ws: ServicioService) {
     this.user.email = '';
     // console.log(this.user);
@@ -81,6 +82,31 @@ export class LoginComponent implements OnInit {
   llegar() {
       alert(1);
   }
+
+  admin() {
+        this.function(1);
+        this.user.email = 'admin@gmail.com';
+        this.user.clave = '12345678a';
+  }
+
+  encargado() {
+        this.function(1);
+      this.user.email = 'encargado@gmail.com';
+      this.user.clave = '12345678a';
+  }
+
+  remisero() {
+        this.function(1);
+      this.user.email = 'remisero@gmail.com';
+      this.user.clave = '12345678a';
+  }
+
+  cancelar() {
+      this.isCondition = false;
+      this.user.email = '';
+      this.user.clave = '';
+  }
+
 
   private handleSuccess(recaptchaSuccess: any) {
       localStorage.setItem('token_captcha', recaptchaSuccess);
