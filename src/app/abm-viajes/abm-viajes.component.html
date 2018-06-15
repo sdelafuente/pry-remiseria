@@ -1,22 +1,26 @@
-<div class="col-md-12 bg-secondary rounded">
+<div class="col-md-12 bg-secondary rounded center">
     <div class="form-group">
-        <input placeholder="Origen" autocorrect="off" autocapitalize="off" spellcheck="off"
-        type="text" class="form-control" #pickupInput [formControl]="destinationInput">
+        <form  (ngSubmit)="pedirViaje()" class="form-horizontal" #formViajes="ngForm" ngNativeValidate>
+            <input placeholder="Origen" autocorrect="off" autocapitalize="off" spellcheck="off"
+            type="text" class="form-control" #pickupInput [formControl]="destinationInput" required>
 
-        <input placeholder="Destino" autocorrect="off" autocapitalize="off" spellcheck="off"
-        type="text" class="form-control" #pickupOutput [formControl]="destinationOutput">
-        <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local" min="startDate"/>
-
-        <select class="custom-select" [(ngModel)]="metodoPago">
-            <option value="-1" selected="selected">Seleccione modo de pago...</option>
-            <option value="0">Efectivo</option>
-            <option value="1">Débito</option>
-            <option value="2">Crédito</option>
-        </select>
-        <agm-map [latitude]="latitude" [longitude]="longitude" >
-            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-            <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
-        </agm-map>
-        <button type="button" class="btn bg-primary" name="guardar" (click)="Enviar()" value="Solicitar">Solicitar</button>
+            <input placeholder="Destino" autocorrect="off" autocapitalize="off" spellcheck="off"
+            type="text" class="form-control" #pickupOutput [formControl]="destinationOutput" required>
+            <label for="fechaViaje">Fecha:</label>
+            <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local" min="startDate" [ngModelOptions]="{standalone: true}" required>
+            <br />
+            <label for="metodoPago">Metodo de Pago:</label>
+            <select class="bootstrap-select" [(ngModel)]="metodoPago" [ngModelOptions]="{standalone: true}" required>
+                <option value="-1">Seleccione modo de pago...</option>
+                <option value="0">Efectivo</option>
+                <option value="1">Débito</option>
+                <option value="2">Crédito</option>
+            </select>
+            <agm-map [latitude]="latitude" [longitude]="longitude" >
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
+            </agm-map>
+            <button type="submit" class="btn bg-primary" name="guardar" value="Solicitar">Solicitar Viaje</button>
+        </form>
     </div>
 </div>

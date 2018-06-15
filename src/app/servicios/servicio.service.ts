@@ -33,6 +33,13 @@ export class ServicioService {
         .catch( this.handleError );
       }
 
+      postViaje(user: Object, ruta: string) {
+        return this.http.post(this.url + ruta, user)
+        .toPromise()
+        .then( this.extractData )
+        .catch( this.handleError );
+      }
+
       /**
        * Wrapper de HTTP que envia el token en la cabecera.
        * Para hacer peticines autenticado.

@@ -18,8 +18,6 @@ export class User {
   }
 }
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,8 +37,6 @@ export class LoginComponent implements OnInit {
   isCondition = false;
   ruta: string;
   tokenCaptcha: string;
-
-
 
   constructor( private router: Router, private ws: ServicioService) {
     this.user.email = '';
@@ -67,8 +63,13 @@ export class LoginComponent implements OnInit {
           this.ws.postLogin( this.user, this.ruta )
           .then( data => {
               // console.log(data);
+              /*
+                hacer la logica para que si no existe el mail.
+                Vaya a registrarase.
+              */
               if ( data.token ) {
                   localStorage.setItem('token', data.token);
+                  localStorage.setItem('user', JSON.stringify(data.usuario));
                   this.router.navigateByUrl('/inicio');
               }
           })

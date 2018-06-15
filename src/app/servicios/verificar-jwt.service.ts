@@ -14,7 +14,7 @@ export class VerificarJWTService implements CanActivate {
 
       //
         const url: string = state.url;
-         console.log('url dentro de canActivate', url);
+         // console.log('url dentro de canActivate', url);
          // console.log(route);
          // console.log(state);
 
