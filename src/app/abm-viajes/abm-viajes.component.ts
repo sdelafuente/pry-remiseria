@@ -11,13 +11,13 @@ declare var google: any;
 declare var jQuery: any;
 
 export class Viaje {
-  public origenLat = '';
-  public origenLng = '';
-  public destinoLat = '';
-  public destinoLng = '';
-  public fecha = '';
-  public metodoPago = '';
-  public cliente_id = 0;
+  public lat_o: any;
+  public lng_o: any;
+  public lat_d: any;
+  public lng_d: any;
+  public fechayhora: any;
+  public tipo_pago: any;
+  public token: any;
 
   constructor() { }
 }
@@ -47,7 +47,6 @@ export class AbmViajesComponent implements OnInit {
     private destinoLat: any;
     private destinoLng: any;
     private objViaje: Viaje;
-    private user: any;
 
        @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
@@ -191,32 +190,32 @@ export class AbmViajesComponent implements OnInit {
        }
        pedirViaje() {
            // this.validarCampos();
-           this.objViaje.origenLat = this.origenLat;
-           this.objViaje.origenLng = this.origenLng;
-           this.objViaje.destinoLat = this.destinoLat;
-           this.objViaje.destinoLng = this.destinoLng;
-           this.objViaje.metodoPago = this.metodoPago;
-           this.objViaje.fecha = this.fechaViaje;
-           this.user = localStorage.getItem('user');
-           this.objViaje.cliente_id = this.user.id;
+           this.objViaje.lat_o = this.origenLat;
+           this.objViaje.lng_o = this.origenLng;
+           this.objViaje.lat_d = this.destinoLat;
+           this.objViaje.lng_d = this.destinoLng;
+           this.objViaje.tipo_pago = this.metodoPago;
+           this.objViaje.fechayhora = this.fechaViaje;
+           this.objViaje.token = localStorage.getItem('token');
 
-            console.log(this.objViaje);
+            // console.log(this.objViaje);
 
-           // this.ws.postViaje( this.objViaje, '/viaje/' )
-           // .then( data => {
-           //     // console.log(data);
-           //     /*
-           //       hacer la logica para que si no existe el mail.
-           //       Vaya a registrarase.
-           //     */
-           //     if ( data.token ) {
-           //         // localStorage.setItem('token', data.token);
-           //         // this.router.navigateByUrl('/bienvenida');
-           //     }
-           // })
-           // .catch( e => {
-           //   console.log(e);
-           // } );
+           this.ws.postViaje( this.objViaje, '/viaje/' )
+           .then( data => {
+                console.log(data);
+               /*
+                 hacer la logica para que si no existe el mail.
+                 Vaya a registrarase.
+               */
+               // if ( data.token ) {
+               //      localStorage.setItem('token', data.token);
+               //      this.router.navigateByUrl('/bienvenida');
+               // }
+           })
+           .catch( e => {
+               console.log(e);
+           } );
            // console.log(this.objViaje);
+
        }
 }

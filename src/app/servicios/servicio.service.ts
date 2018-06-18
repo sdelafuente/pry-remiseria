@@ -33,8 +33,8 @@ export class ServicioService {
         .catch( this.handleError );
       }
 
-      postViaje(user: Object, ruta: string) {
-        return this.http.post(this.url + ruta, user)
+      postViaje(viaje: Object, ruta: string) {
+        return this.http.post(this.url + ruta, {viaje})
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );
