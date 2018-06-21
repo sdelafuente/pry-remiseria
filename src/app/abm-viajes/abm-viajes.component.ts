@@ -47,6 +47,7 @@ export class AbmViajesComponent implements OnInit {
     private destinoLat: any;
     private destinoLng: any;
     private objViaje: Viaje;
+    public viajeSolicitado: boolean;
 
        @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
@@ -76,6 +77,7 @@ export class AbmViajesComponent implements OnInit {
 
        ngOnInit() {
            this.objViaje = new Viaje();
+           this.viajeSolicitado = false;
          // set google maps defaults
          this.zoom = 4;
          this.latitude = -34.603722;
@@ -202,7 +204,8 @@ export class AbmViajesComponent implements OnInit {
 
            this.ws.postViaje( this.objViaje, '/viaje/' )
            .then( data => {
-                console.log(data);
+               this.viajeSolicitado = true;
+                // console.log(data);
                /*
                  hacer la logica para que si no existe el mail.
                  Vaya a registrarase.

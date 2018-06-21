@@ -1,6 +1,6 @@
 <div class="col-md-12 bg-secondary rounded center">
     <div class="form-group">
-        <form  (ngSubmit)="pedirViaje()" class="form-horizontal" #formViajes="ngForm" ngNativeValidate>
+        <form *ngIf="!viajeSolicitado"  (ngSubmit)="pedirViaje()" class="form-horizontal" #formViajes="ngForm" ngNativeValidate>
             <input placeholder="Origen" autocorrect="off" autocapitalize="off" spellcheck="off"
             type="text" class="form-control" #pickupInput [formControl]="destinationInput" required>
 
@@ -22,5 +22,8 @@
             </agm-map>
             <button type="submit" class="btn bg-primary" name="guardar" value="Solicitar">Solicitar Viaje</button>
         </form>
+    </div>
+    <div *ngIf="viajeSolicitado" >
+        <p>su solicitud a sido enviada con exito.</p>
     </div>
 </div>

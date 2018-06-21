@@ -3,7 +3,7 @@
     <div class="col-sm-12" *ngIf="!isCondition">
         <!--button type="button" class="btn btn-default btn-auth" (click)="function(0)" >Cliente</button>
         <button type="button" class="btn btn-default btn-auth" (click)="function(1)" >Usuario</button-->
-        <button type="button" class="btn btn-default btn-auth" (click)="admin(1)" >Admin</button>
+        <button type="button" class="btn btn-default btn-auth" (click)="admin()" >Admin</button>
         <button type="button" class="btn btn-default btn-auth" (click)="remisero()" >Remisero</button>
         <button type="button" class="btn btn-default btn-auth" (click)="encargado()" >Encargado</button>
         <button type="button" class="btn btn-default btn-auth" (click)="function(0)" >Cliente</button>
@@ -27,6 +27,7 @@
             </div>
           </div>
         <div class="form-group row">
+            <script src='https://www.google.com/recaptcha/api.js' async defer ></script>
             <div class="col-sm-8">
                 <ngx-recaptcha2 #captchaElem
                 [size]="size"

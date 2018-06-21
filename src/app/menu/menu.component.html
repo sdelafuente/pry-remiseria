@@ -1,12 +1,28 @@
-<div class="">
-    <div class="footer">
-        <nav class="pull-left">
-            <ul>
-                <li ><a routerLink="/inicio" routerLinkActive="">Inicio</a></li>
-                <li ><a routerLink="/viajes" routerLinkActive="">viajes</a></li>
-                <li ><a routerLink="/login" routerLinkActive="active">Login</a></li>
-                <li ><a [routerLink]="[]" (click)="salir()" routerLinkActive="active">Logout</a></li>
+<!--div class="">
+    <div class="footer"-->
+        <nav class="pull-left navbar navbar-expand">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" >
+                    <a class="nav-link" routerLink="/inicio" routerLinkActive="">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/viajes" routerLinkActive="">viajes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/modificar" routerLinkActive="">Modificar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  routerLink="/usuarios" routerLinkActive="">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link" routerLink="/login" routerLinkActive="">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link" [routerLink]="[]" (click)="salir()" routerLinkActive="">Logout</a>
+                </li>
             </ul>
+            </div>
         </nav>
-    </div>
-</div>
+    <!--/div>
+</div-->

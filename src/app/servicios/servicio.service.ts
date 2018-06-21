@@ -5,13 +5,15 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/throw';
 import { AuthHttp } from 'angular2-jwt';
+import { Usuario } from '../usuario';
 
 @Injectable()
 export class ServicioService {
 
-      url = 'http://localhost/api';
-      // url = 'https://proyectocuatro.000webhostapp.com/api'
+      // url = 'http://localhost/api';
+       url = 'https://proyectocuatro.000webhostapp.com/api';
 
       constructor(public http: Http, private authHttp: AuthHttp) { }
 
@@ -50,6 +52,42 @@ export class ServicioService {
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );
+      }
+
+      public traerUsuarios() {
+          return this.http.get( this.url  + '/usuario/')
+          .toPromise()
+          .then( this.extractData )
+          .catch( this.handleError );
+      }
+
+      public CargarUsuario( url: string, usuario: Usuario ) {
+
+          return this.http
+          .post(this.url  + '/usuario' + url, usuario )
+          .map((res: Response) => res.json());
+      }
+
+      public BorrarUsuario( url: string, usuario: Usuario ) {
+          // console.log({'tipo':'admin','email':usuario.email});
+
+          return this.http
+          .post(this.url  + '/usuario' + url, usuario )
+          .map((res: Response) => res.json());
+      }
+
+      public modificarUsuario( url: string, usuario: Usuario ) {
+          return this.http
+          .post( this.url + '/usuario' + url, usuario )
+          .map((res: Response) => res.json());
+
+      }
+
+      public traerViajes() {
+          return this.http.get( this.url  + '/viaje/')
+          .toPromise()
+          .then( this.extractData )
+          .catch( this.handleError );
       }
 
       private extractData(res: Response) {

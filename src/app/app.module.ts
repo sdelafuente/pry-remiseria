@@ -19,12 +19,18 @@ import { AuthService } from './servicios/auth.service';
 import { VerificarJWTService } from './servicios/verificar-jwt.service';
 
 import { DirectionsMapDirective } from './google-map.directive';
+import { GeoCodingDirective } from './geocoding.directive';
+
+import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
+import { ModificarViajeComponent } from './modificar-viaje/modificar-viaje.component';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent   },
   { path: 'inicio', component: InicioComponent, canActivate: [VerificarJWTService] },
-  { path: 'viajes', component: AbmViajesComponent, canActivate: [VerificarJWTService] },
+  { path: 'viajes', component: AbmViajesComponent, canActivate: [VerificarJWTService]},
+  { path: 'modificar', component: ModificarViajeComponent, canActivate: [VerificarJWTService]},
+  { path: 'usuarios', component: AbmUsuariosComponent, canActivate: [VerificarJWTService] },
   // { path: 'viajes', component: AbmViajesComponent   },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }
@@ -39,7 +45,10 @@ const appRoutes: Routes = [
     ErrorComponent,
     MenuComponent,
     AbmViajesComponent,
-    DirectionsMapDirective
+    DirectionsMapDirective,
+    GeoCodingDirective,
+    AbmUsuariosComponent,
+    ModificarViajeComponent
   ],
   imports: [
       AgmCoreModule.forRoot({

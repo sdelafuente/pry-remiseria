@@ -113,6 +113,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token_captcha', recaptchaSuccess);
   }
 
+  private handleExpire(recaptchaSuccess: any) {
+      // localStorage.setItem('token_captcha', recaptchaSuccess);
+  }
+
   private handleLoad() {
       localStorage.setItem('token_captcha', null);
   }

@@ -1,0 +1,26 @@
+<div class="row text-uppercase bg-warning " style="padding:10px;">
+    <h3 class="text-muted" >Lista de Viajes</h3>
+
+    <!-- LA TABLA YA TIENE ESTILOS PRECARGADOS EN EL CSS -->
+    <table id="customers" class="">
+        <!--tr>
+            <th>Nombre</th>
+            <th>Mail</th>
+            <th>rol</th>
+            <th>Foto</th>
+            <th>Borrar</th>
+            <th>Modificar</th>
+        </tr-->
+
+        <tr *ngFor="let viaje of arrayViajes" [ngStyle]="{'background-color': (viaje.id%2 == 0) ? '#66CCFF' : '#FF9999' }">
+            <td>{{viaje}}</td>
+
+            <!--td>
+                <input type="button" name="btnBorrar+'viaje.id'" (click)="borrarUsuario(usuario)" value="Eliminar" />
+            </td>
+            <td >
+                <input type="button" id="btnModificar_+'usuario.id'" (click)="cargarObjeto(usuario)" value="Modificar">
+            </td-->
+        </tr>
+    </table>
+</div>
