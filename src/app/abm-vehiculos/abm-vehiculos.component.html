@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-12 bg-secondary rounded">
+        <form class="" >
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="miVehiculo.marca" name="marca" placeholder="Marca" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="miVehiculo.patente" name="patente" placeholder="Patente" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="miVehiculo.ocupantes" name="ocupantes" placeholder="Ocupantes" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="miVehiculo.categoria" name="categoria" placeholder="Categoria" />
+            </div>
+            <div class="form-group">
+                <!--input type="file" name="foto" [(ngModel)]="miVehiculo.foto" /-->
+                <button name="enviar" class="btn bg-primary" (click)="cargar()">Enviar</button>
+                <input #javascriptcb type="checkbox" (change)="esModificar( javascriptcb.checked )" />
+            </div>
+            <!--button name="modificar" (click)="modificarUsuario()">modificar</button-->
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 bg-secondary rounded text-uppercase">
+        <h4 class="text-muted" >Lista de Vehiculos</h4>
+            <!-- LA TABLA YA TIENE ESTILOS PRECARGADOS EN EL CSS -->
+            <table class="table rounded" *ngIf="mostrarLista">
+                <thead>
+                  <tr class="grey">
+                    <th>Patente</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Ocupantes</th>
+                    <th>Foto</th>
+                    <th>Borrar</th>
+                    <th>Modificar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let vehiculo of arrayVehiculos" [ngStyle]="{'background-color': (vehiculo.ocupantes < '3') ? '#78909c' : '#cfd8dc' }">
+
+                    <td>
+                        {{vehiculo.patente}}
+                    </td>
+                    <td>{{vehiculo.marca}}</td>
+                    <td>{{vehiculo.categoria}}</td>
+                    <td>{{vehiculo.ocupantes}}</td>
+                    <td>
+                        <!--img width="20" height="20" [src]="'http://localhost:8080/fotos/'+vehiculo.ocupantes+'.jpg'"  alt="" /-->
+                        foto
+                    </td>
+                    <td>
+                        <div class="">
+                            <button class="btn sm-secondary" name="btnBorrar+'vehiculo.ocupantes'"  (click)="borrarVehiculo(vehiculo)">Eliminar</button>
+                        </div>
+                    </td>
+                    <td >
+                        <div class="">
+                            <button class="btn sm-secondary" id="btnModificar_+'vehiculo.id'" (click)="cargarObjeto(vehiculo)" >Modificar</button>
+                        </div>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+    </div>
+</div>

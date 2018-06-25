@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Usuario } from '../usuario';
+import * as jwt_decode from 'jwt-decode';
 
 //  Servicios
 import { ServicioService } from '../servicios/servicio.service';
@@ -9,6 +10,7 @@ import { ServicioService } from '../servicios/servicio.service';
   templateUrl: './abm-usuarios.component.html',
   styleUrls: ['./abm-usuarios.component.css']
 })
+
 export class AbmUsuariosComponent implements OnInit {
 
     //  Array de personas
@@ -18,6 +20,9 @@ export class AbmUsuariosComponent implements OnInit {
 
     private estaCargado: boolean;
     private mostrarLista: boolean;
+    token: any;
+    tokenPayload: any;
+
     //   Objeto Usuario
     usuario: Usuario;
     public miUsuario = new Usuario(0, '', '', 'admin', '');
@@ -34,10 +39,22 @@ export class AbmUsuariosComponent implements OnInit {
 
     //  Traigo todas las personas
     buscarTodos() {
+        this.token = localStorage.getItem('token');
+        if (this.token !== null) {
+            this.tokenPayload = jwt_decode(this.token);
+            if ('encargado' === this.tokenPayload.data.rol) {
 
-        this.service.traerUsuarios()
-        .then( data => { this.mostrarLista = true; this.arrayUsuarios = data; })
-        .catch( error => { console.log(error); });
+                this.service.getObjs('/usuario/roles/')
+                .then( data => { this.mostrarLista = true; this.arrayUsuarios = data; })
+                .catch( error => { console.log(error); });
+            }
+
+        } else {
+            this.service.getObjs('/usuario/')
+            .then( data => { this.mostrarLista = true; this.arrayUsuarios = data; })
+            .catch( error => { console.log(error); });
+        }
+
     }
 
     public esModificar(boleano) {

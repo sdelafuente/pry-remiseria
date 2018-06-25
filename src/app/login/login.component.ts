@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
   enviar() {
       this.tokenCaptcha = localStorage.getItem('token_captcha');
 
-      if (this.tokenCaptcha !== 'null') {
+      if (this.tokenCaptcha !== 'null' || true) {
           this.ws.postLogin( this.user, this.ruta )
           .then( data => {
               // console.log(data);
@@ -71,6 +71,8 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem('token', data.token);
                   localStorage.setItem('user', JSON.stringify(data.usuario));
                   this.router.navigateByUrl('/inicio');
+                  this.router.navigateByUrl('/inicio');
+                  // location.reload();
               }
           })
           .catch( e => {

@@ -191,13 +191,16 @@ export class AbmViajesComponent implements OnInit {
 
        }
        pedirViaje() {
-           // this.validarCampos();
+                const dateString = this.fechaViaje;
+                const newDate = new Date(dateString);
+
+           this.validarCampos();
            this.objViaje.lat_o = this.origenLat;
            this.objViaje.lng_o = this.origenLng;
            this.objViaje.lat_d = this.destinoLat;
            this.objViaje.lng_d = this.destinoLng;
            this.objViaje.tipo_pago = this.metodoPago;
-           this.objViaje.fechayhora = this.fechaViaje;
+           this.objViaje.fechayhora = newDate;
            this.objViaje.token = localStorage.getItem('token');
 
             // console.log(this.objViaje);
@@ -218,7 +221,11 @@ export class AbmViajesComponent implements OnInit {
            .catch( e => {
                console.log(e);
            } );
-           // console.log(this.objViaje);
+           console.log(this.objViaje);
 
+       }
+
+       verFecha() {
+           console.log(this.fechaViaje);
        }
 }

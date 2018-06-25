@@ -7,7 +7,8 @@
             <input placeholder="Destino" autocorrect="off" autocapitalize="off" spellcheck="off"
             type="text" class="form-control" #pickupOutput [formControl]="destinationOutput" required>
             <label for="fechaViaje">Fecha:</label>
-            <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local" min="startDate" [ngModelOptions]="{standalone: true}" required>
+            <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local" 
+            min="startDate" [ngModelOptions]="{standalone: true}" required>
             <br />
             <label for="metodoPago">Metodo de Pago:</label>
             <select class="bootstrap-select" [(ngModel)]="metodoPago" [ngModelOptions]="{standalone: true}" required>
@@ -16,6 +17,11 @@
                 <option value="1">Débito</option>
                 <option value="2">Crédito</option>
             </select>
+            <div class="form-control">
+                <input type="radio" name="nivel"  value="0">Standard
+                <input type="radio" name="nivel"  value="1">Confort
+                <input type="radio" name="nivel"  value="2">Premium
+            </div>
             <agm-map [latitude]="latitude" [longitude]="longitude" >
                 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                 <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
