@@ -36,8 +36,7 @@ export class ServicioService {
       }
 
       postObj(objeto: Object, ruta: string) {
-        return this.http
-        .post(this.url  + ruta, objeto )
+        return this.http.post(this.url  + ruta, objeto )
         .map((res: Response) => res.json());
       }
 
@@ -49,6 +48,7 @@ export class ServicioService {
       }
 
       postViaje(viaje: Object, ruta: string) {
+          console.log(viaje);
         return this.http.post(this.url + ruta, {viaje})
         .toPromise()
         .then( this.extractData )

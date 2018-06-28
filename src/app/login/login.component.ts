@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       if (bool) {
         this.ruta = '/usuario/';
       } else {
-        this.ruta = '/cliente/';
+        this.ruta = '/usuario/';
       }
   }
 
@@ -101,6 +101,12 @@ export class LoginComponent implements OnInit {
   remisero() {
         this.function(1);
       this.user.email = 'remisero@gmail.com';
+      this.user.clave = '12345678a';
+  }
+
+  cliente() {
+        this.function(0);
+      this.user.email = 'santiago.daniel.delafuente@hotmail.com';
       this.user.clave = '12345678a';
   }
 

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
 import { DirectionsMapDirective } from '../google-map.directive';
 import {} from '@types/googlemaps';
+import { Router } from '@angular/router';
 import { ServicioService } from '../servicios/servicio.service';
 
 
@@ -61,6 +62,7 @@ export class AbmViajesComponent implements OnInit {
        public origin: any ; // its a example aleatory position
        public destination: any; // its a example aleatory position
        constructor(
+         private router: Router,
          private mapsAPILoader: MapsAPILoader,
          private ngZone: NgZone,
          private gmapsApi: GoogleMapsAPIWrapper,
@@ -190,6 +192,7 @@ export class AbmViajesComponent implements OnInit {
        private validarCampos() {
 
        }
+
        pedirViaje() {
                 const dateString = this.fechaViaje;
                 const newDate = new Date(dateString);
@@ -200,23 +203,21 @@ export class AbmViajesComponent implements OnInit {
            this.objViaje.lat_d = this.destinoLat;
            this.objViaje.lng_d = this.destinoLng;
            this.objViaje.tipo_pago = this.metodoPago;
-           this.objViaje.fechayhora = newDate;
+           this.objViaje.fechayhora =  this.fechaViaje; // newDate;
            this.objViaje.token = localStorage.getItem('token');
 
-            // console.log(this.objViaje);
+             console.log(this.objViaje);
 
            this.ws.postViaje( this.objViaje, '/viaje/' )
            .then( data => {
+               // console.log(data);
                this.viajeSolicitado = true;
+               this.router.navigateByUrl('/encuesta');
                 // console.log(data);
                /*
                  hacer la logica para que si no existe el mail.
                  Vaya a registrarase.
                */
-               // if ( data.token ) {
-               //      localStorage.setItem('token', data.token);
-               //      this.router.navigateByUrl('/bienvenida');
-               // }
            })
            .catch( e => {
                console.log(e);

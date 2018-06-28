@@ -24,6 +24,7 @@ import { GeoCodingDirective } from './geocoding.directive';
 import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
 import { ModificarViajeComponent } from './modificar-viaje/modificar-viaje.component';
 import { AbmVehiculosComponent } from './abm-vehiculos/abm-vehiculos.component';
+import { EncuestaComponent } from './encuesta/encuesta.component';
 
 
 const appRoutes: Routes = [
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   { path: 'modificar', component: ModificarViajeComponent, canActivate: [VerificarJWTService]},
   { path: 'vehiculos', component: AbmVehiculosComponent, canActivate: [VerificarJWTService]},
   { path: 'usuarios', component: AbmUsuariosComponent, canActivate: [VerificarJWTService] },
+  { path: 'encuesta', component: EncuestaComponent, canActivate: [VerificarJWTService] },
   // { path: 'viajes', component: AbmViajesComponent   },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     GeoCodingDirective,
     AbmUsuariosComponent,
     ModificarViajeComponent,
-    AbmVehiculosComponent
+    AbmVehiculosComponent,
+    EncuestaComponent
   ],
   imports: [
       AgmCoreModule.forRoot({

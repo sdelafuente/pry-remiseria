@@ -1,0 +1,56 @@
+<div class="col-md-12 bg-secondary rounded center">
+    <div class="form-group">
+        <form *ngIf="!encuestaCargada"  (ngSubmit)="cargarEncuesta()" class="form-horizontal" #formTurno="ngForm" ngNativeValidate>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="respuesta_1">Pregunta 1:</label>
+                <div class="col-sm-10">
+                      <input id="respuesta_1" class="form-control" [(ngModel)]="respuesta_1" name="respuesta_1" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="respuesta_2">Pregunta 2:</label>
+                <div class="col-sm-10">
+                      <input id="respuesta_2" class="form-control" [(ngModel)]="respuesta_2" name="respuesta_2" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="respuesta_3">Pregunta 2:</label>
+                <div class="col-sm-10">
+                      <input id="respuesta_3" class="form-control" [(ngModel)]="respuesta_3" name="respuesta_3" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="respuesta_4">Pregunta:</label>
+                <div class="col-sm-10">
+                      <input id="respuesta_4" class="form-control" [(ngModel)]="respuesta_4" name="respuesta_4" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="bootstrap-select" [(ngModel)]="respuesta_5" name="respuesta_5" [ngModelOptions]="{standalone: true}" required>
+                    <option value="-1">Seleccione modo de pago...</option>
+                    <option value="0">Efectivo</option>
+                    <option value="1">Débito</option>
+                    <option value="2">Crédito</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="respuesta_6">Metodo de Pago:</label>
+                <div class="form-control">
+                    <div class="col-sm-10">
+                        <input type="radio" name="respuesta_6"  value="0">Standard
+                        <input type="radio" name="respuesta_6"  value="1">Confort
+                        <input type="radio" name="respuesta_6"  value="2">Premium
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-control">
+                <input type="checkbox" [checked]="respuesta_7" (change)="respuesta_7 = !respuesta_7" name="respuesta_7" />
+            </div>
+            <button type="submit" class="btn bg-primary" name="btnEncuesta" value="encuesta">Cargar Encuesta</button>
+        </form>
+    </div>
+    <div *ngIf="encuestaCargada" >
+        <p>su solicitud a sido enviada con exito.</p>
+    </div>
+</div>
