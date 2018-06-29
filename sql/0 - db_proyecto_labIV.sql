@@ -72,35 +72,7 @@ ALTER TABLE `vehiculos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
-CREATE TABLE `mascotas` (
-  `id` int(11) NOT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
-  `nro_ficha` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `raza` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `color` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `edad` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `tipo` int(11) COLLATE utf8_unicode_ci NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-ALTER TABLE `mascotas`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `mascotas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
-  CREATE TABLE `turnos` (
-    `id` int(11) NOT NULL,
-    `mascota_id` varchar(255) COLLATE utf8_unicode_ci NULL,
-    `fecha` varchar(255) COLLATE utf8_unicode_ci NULL,
-    `autorizado` varchar(255) COLLATE utf8_unicode_ci NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-  ALTER TABLE `turnos`
-    ADD PRIMARY KEY (`id`);
-
-  ALTER TABLE `turnos`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+alter table viajes DROP FOREIGN KEY IF EXISTS fk_viajes_cliente;
 
     CREATE TABLE `encuestas` (
       `id` int(11) NOT NULL,
