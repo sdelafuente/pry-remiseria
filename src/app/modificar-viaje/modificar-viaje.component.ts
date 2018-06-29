@@ -18,16 +18,14 @@ export class ModificarViajeComponent implements OnInit {
     @Input() arrayViajes: Array<any>;
     @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
 
-
     constructor(private service: ServicioService) {
         this.arrayViajes = new Array<any>();
     }
 
-  ngOnInit() {
+    ngOnInit() {
       this.buscarTodos();
       this.mostrarLista = true;
-
-  }
+    }
 
   //  Traigo todas las personas
   buscarTodos() {

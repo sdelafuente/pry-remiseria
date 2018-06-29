@@ -33,14 +33,12 @@ export class LoginComponent implements OnInit {
   @Input() captchaElem: any;
 
   user: User = new User('', '');
-  // url: string = 'http://localhost:8080/servidor/jwt/';
   isCondition = false;
   ruta: string;
   tokenCaptcha: string;
 
   constructor( private router: Router, private ws: ServicioService) {
     this.user.email = '';
-    // console.log(this.user);
   }
 
   ngOnInit() {
@@ -71,7 +69,7 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem('token', data.token);
                   localStorage.setItem('user', JSON.stringify(data.usuario));
                   this.router.navigateByUrl('/inicio');
-                  this.router.navigateByUrl('/inicio');
+
                   // location.reload();
               }
           })
@@ -80,10 +78,6 @@ export class LoginComponent implements OnInit {
           } );
       }
 
-  }
-
-  llegar() {
-      alert(1);
   }
 
   admin() {

@@ -15,42 +15,34 @@ export class MenuComponent implements OnInit {
     tokenPayload: any;
     public tipoMenu: any;
 
-    // decode the token to get its payload
+    constructor(private router: Router) { }
 
-  constructor(private router: Router) { }
+    ngOnInit() { }
 
+    verificarMenu() {
+        this.token = localStorage.getItem('token');
+        if (this.token !== null) {
+            this.tokenPayload = jwt_decode(this.token);
 
-  ngOnInit() {
-      // this.verificarMenu();
-  }
-
-  verificarMenu() {
-      this.token = localStorage.getItem('token');
-      if (this.token !== null) {
-          this.tokenPayload = jwt_decode(this.token);
-
-          if ('admin' === this.tokenPayload.data.rol) {
+            if ('admin' === this.tokenPayload.data.rol) {
               this.tipoMenu = 1;
-          } else if ('encargado' === this.tokenPayload.data.rol)  {
+            } else if ('encargado' === this.tokenPayload.data.rol)  {
               this.tipoMenu = 2;
-          } else if ('remisero' === this.tokenPayload.data.rol) {
+            } else if ('remisero' === this.tokenPayload.data.rol) {
               this.tipoMenu = 3;
-          } else if ('cliente' === this.tokenPayload.data.rol) {
+            } else if ('cliente' === this.tokenPayload.data.rol) {
               this.tipoMenu = 4;
-          } else {
+            } else {
               this.tipoMenu = 0;
-          }
-          // console.log(this.tokenPayload.data.rol);
-      } else {
+            }
+        } else {
           this.tipoMenu = 0;
-      }
-      return this.tipoMenu;
-  }
+        }
+        return this.tipoMenu;
+    }
 
   salir() {
-    // localStorage.setItem('token', null);
     localStorage.clear();
-    // window.alert('Chauuuuuu!!!');
     this.router.navigate(['/login']);
     this.verificarMenu();
   }

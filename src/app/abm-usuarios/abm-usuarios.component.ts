@@ -80,8 +80,6 @@ export class AbmUsuariosComponent implements OnInit {
             this.miUsuario.password
         );
 
-        // privUsuario.rol = 'admin';
-
         this.service.CargarUsuario('/agregar/', privUsuario)
         .subscribe(
            data => {
@@ -121,14 +119,12 @@ export class AbmUsuariosComponent implements OnInit {
 
     }
 
-
     public cargarObjeto(usuario) {
         this.miUsuario = new Usuario(usuario.id, usuario.username, usuario.email, usuario.rol, usuario.password);
         return true;
     }
 
     public borrarUsuario(usuario) {
-        // usuario.tipo = 'admin';
         this.service.BorrarUsuario('/borrar/', usuario)
         .subscribe(
            data => {
@@ -137,7 +133,6 @@ export class AbmUsuariosComponent implements OnInit {
            },
            error => {
              console.error('Error borrando usuario');
-             // console.error(error);
              return false;
            }
         );
