@@ -1,0 +1,19 @@
+a- El remisero,
+    1. Tendrá acceso al listado de los viajes asignados.
+    2. Deberá marcar el viaje como realizado, cargando el pago o cuenta corriente.
+
+b- El encargado,
+    1.Tendrá acceso al listado de los viajes solicitados por los clientes, y deberá asignarle un remisero en base a las
+    condiciones que el cliente eligió.
+    2. Tendrá acceso al listado completo de los viajes(Realizados, solicitados, cancelados).
+    3. Tendrá acceso a los informes(Estadísticas).
+    4. Podrá   añadir   nuevos   vehículos   y   remiseros.   Podrá   habilitar   y   deshabilitar   vehículos   para   la   elección   de   los
+    clientes.
+
+c- El cliente,
+    1. Tendrá   acceso   a   solicitar   un   nuevo   viaje.
+        Puede   optar   por   un   cierto   nivel   de   comodidad   o   de   prestaciones   acorde   al
+        viaje que desea realizar. 
+        Deberá indicar: origen, destino, fecha y hora de viaje, medio de pago.
+    2. Tendrá   acceso   al   listado   de   los   viajes   realizados   y   solicitados   por   el.   Debe   tener   la   posibilidad   de   cancelar   o
+       modificar un viaje.

@@ -23,7 +23,10 @@ CREATE TABLE `viajes` (
   `fechayhora` varchar(255) COLLATE utf8_unicode_ci NULL,
   `tipo_pago` varchar(255) COLLATE utf8_unicode_ci NULL,
   `nivel` int(11) DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL
+  `estado` int(11) DEFAULT NULL,
+  `duracion` varchar(255) COLLATE utf8_unicode_ci NULL,
+  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 ALTER TABLE `cliente`

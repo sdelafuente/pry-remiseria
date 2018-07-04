@@ -45,6 +45,7 @@ export class EncuestaComponent implements OnInit {
     ngOnInit() {
         this.miEncuesta = new Encuesta();
         this.encuestaCargada = false;
+        this.respuesta_5 = -1;
     }
 
     cargarEncuesta() {
@@ -58,11 +59,12 @@ export class EncuestaComponent implements OnInit {
         this.miEncuesta.respuesta_7 = this.respuesta_7;
         this.miEncuesta.respuesta_8 = this.respuesta_8;
         this.miEncuesta.token = localStorage.getItem('token');
-
+        console.log(this.miEncuesta);
         this.ws.postObj( this.miEncuesta, '/encuesta/' )
         .subscribe(
            data => {
-               this.encuestaCargada = true;
+                console.log(data);
+               // this.encuestaCargada = true;
                this.router.navigateByUrl('/inicio');
            },
            error => {

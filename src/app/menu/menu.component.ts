@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
 
     verificarMenu() {
         this.token = localStorage.getItem('token');
+
         if (this.token !== null) {
             this.tokenPayload = jwt_decode(this.token);
 

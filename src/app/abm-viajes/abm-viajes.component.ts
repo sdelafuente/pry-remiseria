@@ -17,6 +17,8 @@ export class Viaje {
   public lng_d: any;
   public fechayhora: any;
   public tipo_pago: any;
+  public duracion: any;
+  public distancia: any;
   public token: any;
 
   constructor() { }
@@ -111,6 +113,7 @@ export class AbmViajesComponent implements OnInit {
     }
 
     private setupPlaceChangedListener(autocomplete: any, mode: any ) {
+
         autocomplete.addListener('place_changed', () => {
             this.ngZone.run(() => {
             // get the place result
@@ -139,13 +142,13 @@ export class AbmViajesComponent implements OnInit {
              // Update the directions
              this.vc.updateDirections();
              this.zoom = 12;
-             // this.getDistanceAndDuration();
 
              if (this.vc.destination !== undefined ) {
                 this.origenLat = this.vc.origin.latitude;
                 this.origenLng = this.vc.origin.longitude;
                 this.destinoLat = this.vc.destination.latitude;
                 this.destinoLng = this.vc.destination.longitude;
+                this.getDistanceAndDuration();
              }
 
              // this.estimatedTime = localStorage.getItem('duracion');
@@ -157,8 +160,8 @@ export class AbmViajesComponent implements OnInit {
    }
 
     getDistanceAndDuration() {
-        this.estimatedTime = this.vc.estimatedTime;
-        this.estimatedDistance = this.vc.estimatedDistance;
+        this.estimatedTime = localStorage.getItem('duracion');
+        this.estimatedDistance = localStorage.getItem('distancia');
     }
 
     scrollToBottom(): void {
@@ -190,21 +193,19 @@ export class AbmViajesComponent implements OnInit {
      // Write your Google Map Custom Style Code Here.
    }
 
-   private validarCampos() {
-
-   }
 
     pedirViaje() {
         const dateString = this.fechaViaje;
         const newDate = new Date(dateString);
 
-        this.validarCampos();
         this.objViaje.lat_o = this.origenLat;
         this.objViaje.lng_o = this.origenLng;
         this.objViaje.lat_d = this.destinoLat;
         this.objViaje.lng_d = this.destinoLng;
         this.objViaje.tipo_pago = this.metodoPago;
         this.objViaje.fechayhora =  this.fechaViaje; // newDate;
+        this.objViaje.duracion = this.estimatedTime;
+        this.objViaje.distancia = this.estimatedDistance;
         this.objViaje.token = localStorage.getItem('token');
 
         this.ws.postViaje( this.objViaje, '/viaje/' )

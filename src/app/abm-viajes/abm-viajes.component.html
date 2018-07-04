@@ -1,13 +1,24 @@
 <div class="col-md-12 bg-secondary rounded center">
     <div class="form-group">
         <form *ngIf="!viajeSolicitado"  (ngSubmit)="pedirViaje()" class="form-horizontal" #formViajes="ngForm" ngNativeValidate>
+
             <input placeholder="Origen" autocorrect="off" autocapitalize="off" spellcheck="off"
             type="text" class="form-control" #pickupInput [formControl]="destinationInput" required>
 
             <input placeholder="Destino" autocorrect="off" autocapitalize="off" spellcheck="off"
             type="text" class="form-control" #pickupOutput [formControl]="destinationOutput" required>
+
+            <agm-map [latitude]="latitude" [longitude]="longitude" >
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
+            </agm-map>
+            
+            <div class="form-control">
+                <input type="text" [(ngModel)]="estimatedTime" name="tiempo" readonly>
+                <input type="text" [(ngModel)]="estimatedDistance" name="distancia" value="" readonly>
+            </div>
             <label for="fechaViaje">Fecha:</label>
-            <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local" 
+            <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local"
             min="startDate" [ngModelOptions]="{standalone: true}" required>
             <br />
             <label for="metodoPago">Metodo de Pago:</label>
@@ -22,14 +33,10 @@
                 <input type="radio" name="nivel"  value="1">Confort
                 <input type="radio" name="nivel"  value="2">Premium
             </div>
-            <agm-map [latitude]="latitude" [longitude]="longitude" >
-                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-                <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
-            </agm-map>
             <button type="submit" class="btn bg-primary" name="guardar" value="Solicitar">Solicitar Viaje</button>
         </form>
     </div>
-    <div *ngIf="viajeSolicitado" >
+    <!-- <div *ngIf="viajeSolicitado" >
         <p>su solicitud a sido enviada con exito.</p>
-    </div>
+    </div> -->
 </div>

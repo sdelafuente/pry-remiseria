@@ -48,7 +48,7 @@ export class ServicioService {
       }
 
       postViaje(viaje: Object, ruta: string) {
-          console.log(viaje);
+          // console.log(viaje);
         return this.http.post(this.url + ruta, {viaje})
         .toPromise()
         .then( this.extractData )

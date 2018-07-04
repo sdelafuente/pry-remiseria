@@ -70,10 +70,10 @@ export class DirectionsMapDirective {
                     // console.log( 'Estimated travel time: ' + point.duration.text + ' (' + point.distance.text + ')' );
                     localStorage.setItem('duracion', null);
                     localStorage.setItem('distancia', null);
-                    localStorage.setItem('estimado', null);
+                    // localStorage.setItem('estimado', null);
                     localStorage.setItem('duracion', point.duration.text);
                     localStorage.setItem('distancia', point.distance.text);
-                    localStorage.setItem('estimado', me.estimatedTime);
+                    // localStorage.setItem('estimado', me.estimatedTime);
 
                 } else {
                   console.log('Directions request failed due to ' + status);
