@@ -45,7 +45,10 @@ export class AbmUsuariosComponent implements OnInit {
             if ('encargado' === this.tokenPayload.data.rol) {
 
                 this.service.getObjs('/usuario/roles/')
-                .then( data => { this.mostrarLista = true; this.arrayUsuarios = data; })
+                .then( data => {
+                    this.mostrarLista = true;
+                    this.arrayUsuarios = data;
+                })
                 .catch( error => { console.log(error); });
             }
 

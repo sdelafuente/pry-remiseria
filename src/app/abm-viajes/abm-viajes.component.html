@@ -12,7 +12,7 @@
                 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                 <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
             </agm-map>
-            
+
             <div class="form-control">
                 <input type="text" [(ngModel)]="estimatedTime" name="tiempo" readonly>
                 <input type="text" [(ngModel)]="estimatedDistance" name="distancia" value="" readonly>
@@ -29,9 +29,9 @@
                 <option value="2">Crédito</option>
             </select>
             <div class="form-control">
-                <input type="radio" name="nivel"  value="0">Standard
-                <input type="radio" name="nivel"  value="1">Confort
-                <input type="radio" name="nivel"  value="2">Premium
+                <input type="radio" name="nivel" [(ngModel)]="nivel" (click)="nivel='0'" value="0">Standard
+                <input type="radio" name="nivel" [(ngModel)]="nivel" (click)="nivel='1'" value="1">Confort
+                <input type="radio" name="nivel" [(ngModel)]="nivel" (click)="nivel='2'" value="2">Premium
             </div>
             <button type="submit" class="btn bg-primary" name="guardar" value="Solicitar">Solicitar Viaje</button>
         </form>

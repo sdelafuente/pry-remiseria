@@ -68,8 +68,8 @@ export class DirectionsMapDirective {
                     me.estimatedDistance = point.distance.text;
                     // console.log(me.estimatedTime);
                     // console.log( 'Estimated travel time: ' + point.duration.text + ' (' + point.distance.text + ')' );
-                    localStorage.setItem('duracion', null);
-                    localStorage.setItem('distancia', null);
+                    // localStorage.setItem('duracion', null);
+                    // localStorage.setItem('distancia', null);
                     // localStorage.setItem('estimado', null);
                     localStorage.setItem('duracion', point.duration.text);
                     localStorage.setItem('distancia', point.distance.text);

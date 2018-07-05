@@ -11,11 +11,25 @@
                 <input type="text" class="form-control" [(ngModel)]="miVehiculo.ocupantes" name="ocupantes" placeholder="Ocupantes" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="miVehiculo.categoria" name="categoria" placeholder="Categoria" />
+                <label for="fechaViaje">Habilitado:</label>
+                <input type="checkbox" class=" " [(ngModel)]="miVehiculo.habilitado"  #habilitado (change)="habilitar( habilitado.checked )" name="habilitado" placeholder="Habilitado" />
+            </div>
+            <div class="form-control">
+                <input type="radio" name="nivel" [(ngModel)]="miVehiculo.categoria" (click)="miVehiculo.categoria='0'" value="0">Standard
+                <input type="radio" name="nivel" [(ngModel)]="miVehiculo.categoria" (click)="miVehiculo.categoria='1'" value="1">Confort
+                <input type="radio" name="nivel" [(ngModel)]="miVehiculo.categoria" (click)="miVehiculo.categoria='2'" value="2">Premium
+            </div>
+            <div class="form-control">
+                <label for="metodoPago">Remiseros:</label>
+                <select class="bootstrap-select" [(ngModel)]="miVehiculo.usuario_id" [ngModelOptions]="{standalone: true}" required>
+                    <option value="-1">Ninguno</option>
+                    <option *ngFor="let c of arrayRemos" [ngValue]="c.id">{{c.username}}</option>
+                </select>
             </div>
             <div class="form-group">
                 <!--input type="file" name="foto" [(ngModel)]="miVehiculo.foto" /-->
                 <button name="enviar" class="btn bg-primary" (click)="cargar()">Enviar</button>
+                <label for="javascriptcb">Modificar:</label>
                 <input #javascriptcb type="checkbox" (change)="esModificar( javascriptcb.checked )" />
             </div>
             <!--button name="modificar" (click)="modificarUsuario()">modificar</button-->
@@ -25,7 +39,6 @@
 <div class="row">
     <div class="col-md-12 bg-secondary rounded text-uppercase">
         <h4 class="text-muted" >Lista de Vehiculos</h4>
-            <!-- LA TABLA YA TIENE ESTILOS PRECARGADOS EN EL CSS -->
             <table class="table rounded" *ngIf="mostrarLista">
                 <thead>
                   <tr class="grey">
@@ -33,7 +46,7 @@
                     <th>Marca</th>
                     <th>Categoria</th>
                     <th>Ocupantes</th>
-                    <th>Foto</th>
+                    <th>Habilitado</th>
                     <th>Borrar</th>
                     <th>Modificar</th>
                 </tr>
@@ -45,11 +58,16 @@
                         {{vehiculo.patente}}
                     </td>
                     <td>{{vehiculo.marca}}</td>
-                    <td>{{vehiculo.categoria}}</td>
+                    <!-- <td>{{vehiculo.categoria}}</td> -->
+                    <td>
+                        <span *ngIf="vehiculo.categoria==0">Standard</span>
+                        <span *ngIf="vehiculo.categoria==1">Confort</span>
+                        <span *ngIf="vehiculo.categoria==2">Premium</span>
+                    </td>
                     <td>{{vehiculo.ocupantes}}</td>
                     <td>
-                        <!--img width="20" height="20" [src]="'http://localhost:8080/fotos/'+vehiculo.ocupantes+'.jpg'"  alt="" /-->
-                        foto
+                        <span *ngIf="vehiculo.habilitado==1">Habilitado</span>
+                        <span *ngIf="vehiculo.habilitado==0">Inhabilitado</span>
                     </td>
                     <td>
                         <div class="">

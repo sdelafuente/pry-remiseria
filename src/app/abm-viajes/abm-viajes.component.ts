@@ -11,17 +11,18 @@ declare var google: any;
 declare var jQuery: any;
 
 export class Viaje {
-  public lat_o: any;
-  public lng_o: any;
-  public lat_d: any;
-  public lng_d: any;
-  public fechayhora: any;
-  public tipo_pago: any;
-  public duracion: any;
-  public distancia: any;
-  public token: any;
+    public lat_o: any;
+    public lng_o: any;
+    public lat_d: any;
+    public lng_d: any;
+    public fechayhora: any;
+    public tipo_pago: any;
+    public duracion: any;
+    public distancia: any;
+    public token: any;
+    public nivel: any;
 
-  constructor() { }
+    constructor() { }
 }
 
 @Component({
@@ -43,12 +44,14 @@ export class AbmViajesComponent implements OnInit {
     public estimatedTime: any;
     public estimatedDistance: any;
     public startDate: any;
+
     public fechaViaje: any;
     public metodoPago: any;
     private origenLat: any;
     private origenLng: any;
     private destinoLat: any;
     private destinoLng: any;
+    private nivel: any;
     private objViaje: Viaje;
     public viajeSolicitado: boolean;
 
@@ -206,6 +209,7 @@ export class AbmViajesComponent implements OnInit {
         this.objViaje.fechayhora =  this.fechaViaje; // newDate;
         this.objViaje.duracion = this.estimatedTime;
         this.objViaje.distancia = this.estimatedDistance;
+        this.objViaje.nivel = this.nivel;
         this.objViaje.token = localStorage.getItem('token');
 
         this.ws.postViaje( this.objViaje, '/viaje/' )

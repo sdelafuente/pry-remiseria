@@ -12,8 +12,8 @@ import { Usuario } from '../usuario';
 @Injectable()
 export class ServicioService {
 
-       url = 'http://localhost/api';
-      // url = 'https://proyectocuatro.000webhostapp.com/api';
+      //  url = 'http://localhost/api';
+      url = 'https://proyectocuatro.000webhostapp.com/api';
 
       constructor(public http: Http, private authHttp: AuthHttp) { }
 
@@ -41,6 +41,7 @@ export class ServicioService {
       }
 
       postLogin(user: Object, ruta: string) {
+          console.log(ruta);
         return this.http.post(this.url + ruta, user)
         .toPromise()
         .then( this.extractData )

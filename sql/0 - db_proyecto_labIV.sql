@@ -51,6 +51,12 @@ ALTER TABLE `usuario`
 ALTER TABLE `viajes`
   ADD CONSTRAINT `fk_viajes_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`);
 
+  alter table viajes
+  add  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL;
+
+  alter table viajes
+  add  `duracion` varchar(255) COLLATE utf8_unicode_ci NULL;
+
 INSERT INTO `usuario` (`username`, `password`,`email`, `rol`) VALUES
 ('admin', '12345678a','admin@gmail.com','admin'),
 ('Remisero I', '12345678a','remisero1@gmail.com','remisero'),
@@ -74,6 +80,16 @@ ALTER TABLE `vehiculos`
 ALTER TABLE `vehiculos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+  alter table vehiculos
+  add usuario_id int null;
+
+  update vehiculos set usuario_id = -1;
+
+      alter table vehiculos
+      add habilitado int null;
+
+
+      update vehiculos set habilitado = 1;
 
 alter table viajes DROP FOREIGN KEY IF EXISTS fk_viajes_cliente;
 
