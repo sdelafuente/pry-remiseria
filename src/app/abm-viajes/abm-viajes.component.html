@@ -29,10 +29,17 @@
                 <option value="2">Crédito</option>
             </select>
             <div class="form-control">
+                <label for="metodoPago">Vehiculos:</label>
+                <select class="bootstrap-select" [(ngModel)]="vehiculo_id" [ngModelOptions]="{standalone: true}" required>
+                    <option value="-1">Ninguno</option>
+                    <option *ngFor="let c of arrayAutos" [ngValue]="c.id">{{ c.marca }} {{ c.categoria | categorias: c.categoria }}</option>
+                </select>
+            </div>
+            <!-- <div class="form-control">
                 <input type="radio" name="nivel" [(ngModel)]="nivel" (click)="nivel='0'" value="0">Standard
                 <input type="radio" name="nivel" [(ngModel)]="nivel" (click)="nivel='1'" value="1">Confort
                 <input type="radio" name="nivel" [(ngModel)]="nivel" (click)="nivel='2'" value="2">Premium
-            </div>
+            </div> -->
             <button type="submit" class="btn bg-primary" name="guardar" value="Solicitar">Solicitar Viaje</button>
         </form>
     </div>

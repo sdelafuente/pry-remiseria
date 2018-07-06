@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { NgxCaptchaModule } from 'ngx-captcha';
 
@@ -25,6 +26,7 @@ import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
 import { ModificarViajeComponent } from './modificar-viaje/modificar-viaje.component';
 import { AbmVehiculosComponent } from './abm-vehiculos/abm-vehiculos.component';
 import { EncuestaComponent } from './encuesta/encuesta.component';
+import { CategoriasPipe } from './pipes/categorias.pipe';
 
 
 const appRoutes: Routes = [
@@ -54,7 +56,8 @@ const appRoutes: Routes = [
     AbmUsuariosComponent,
     ModificarViajeComponent,
     AbmVehiculosComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    CategoriasPipe
   ],
   imports: [
       AgmCoreModule.forRoot({

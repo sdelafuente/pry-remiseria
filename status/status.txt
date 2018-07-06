@@ -13,7 +13,15 @@ b- El encargado,
 c- El cliente,
     1. Tendrá   acceso   a   solicitar   un   nuevo   viaje.
         Puede   optar   por   un   cierto   nivel   de   comodidad   o   de   prestaciones   acorde   al
-        viaje que desea realizar. 
+        viaje que desea realizar.
         Deberá indicar: origen, destino, fecha y hora de viaje, medio de pago.
     2. Tendrá   acceso   al   listado   de   los   viajes   realizados   y   solicitados   por   el.   Debe   tener   la   posibilidad   de   cancelar   o
        modificar un viaje.
+
+
+Hacer un:
+    filtro
+    pipe
+    directiva
+
+    

@@ -55,27 +55,46 @@ export class LoginComponent implements OnInit {
   }
 
   enviar() {
-      this.tokenCaptcha = localStorage.getItem('token_captcha');
+      // this.tokenCaptcha = localStorage.getItem('token_captcha');
 
       if (this.tokenCaptcha !== 'null' || true) {
-          this.ws.postLogin( this.user, this.ruta )
-          .then( data => {
-              // console.log(data);
-              /*
-                hacer la logica para que si no existe el mail.
-                Vaya a registrarase.
-              */
-              if ( data.token ) {
-                  localStorage.setItem('token', data.token);
-                  localStorage.setItem('user', JSON.stringify(data.usuario));
-                  this.router.navigateByUrl('/inicio');
 
-                  // location.reload();
-              }
-          })
-          .catch( e => {
-            console.log(e);
-          } );
+          this.ws.createArticle(this.user )
+          .subscribe(
+             data => {
+                 if ( data.token ) {
+                     localStorage.setItem('token', data.token);
+                     localStorage.setItem('user', JSON.stringify(data.usuario));
+                     this.router.navigateByUrl('/inicio');
+                     // location.reload();
+                 }
+                return true;
+             },
+             error => {
+               console.error('Error al tratar de hacer login.');
+               return false;
+             }
+          );
+
+          // this.ws.postLogin( this.user, this.ruta )
+          // .then( data => {
+          //       console.log(data);
+          //     /*
+          //       hacer la logica para que si no existe el mail.
+          //       Vaya a registrarase.
+          //     */
+              // if ( data.token ) {
+              //     localStorage.setItem('token', data.token);
+              //     localStorage.setItem('user', JSON.stringify(data.usuario));
+              //     this.router.navigateByUrl('/inicio');
+              //     // location.reload();
+              // }
+          // })
+          // .catch( e => {
+          //   console.log(e);
+          // } );
+
+
       }
 
   }

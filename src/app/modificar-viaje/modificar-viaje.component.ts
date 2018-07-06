@@ -16,6 +16,7 @@ export class ModificarViajeComponent implements OnInit {
     private mostrarLista: boolean;
     private token: any;
     private tokenPayload: any;
+    private mostrarLoader: boolean;
 
     @Input() arrayViajes: Array<any>;
     @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
@@ -26,6 +27,7 @@ export class ModificarViajeComponent implements OnInit {
 
     ngOnInit() {
         this.buscarTodos();
+        this.mostrarLoader = false;
     }
 
     //  Traigo todas las personas
@@ -35,16 +37,17 @@ export class ModificarViajeComponent implements OnInit {
         if (this.token !== null) {
           this.tokenPayload = jwt_decode(this.token);
           if (null !== this.tokenPayload.data.email) {
-
+              this.mostrarLoader = true;
               this.service.getObjs('/viaje/mios/' + this.tokenPayload.data.email)
               .then( data => {
                    // console.log(data);
                   if (data.viajes !== null) {
                       this.arrayViajes = data.viajes;
+                      this.mostrarLoader = false;
                   }
 
                 })
-              .catch( error => { console.log(error); });
+              .catch( error => { console.log(error); this.mostrarLoader = false; });
           }
         }
     }

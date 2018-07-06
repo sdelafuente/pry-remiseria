@@ -16,6 +16,7 @@ CREATE TABLE `cliente` (
 CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) DEFAULT NULL,
+  `vehiculo_id` int(11) DEFAULT NULL,
   `lat_o` float COLLATE utf8_unicode_ci NULL,
   `lng_o` float COLLATE utf8_unicode_ci NULL,
   `lat_d` float COLLATE utf8_unicode_ci NULL,
@@ -25,7 +26,8 @@ CREATE TABLE `viajes` (
   `nivel` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `duracion` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL
+  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL,
+
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -56,6 +58,9 @@ ALTER TABLE `viajes`
 
   alter table viajes
   add  `duracion` varchar(255) COLLATE utf8_unicode_ci NULL;
+
+  alter table viajes
+  add vehiculo_id int null;
 
 INSERT INTO `usuario` (`username`, `password`,`email`, `rol`) VALUES
 ('admin', '12345678a','admin@gmail.com','admin'),
@@ -88,6 +93,8 @@ ALTER TABLE `vehiculos`
       alter table vehiculos
       add habilitado int null;
 
+      alter table vehiculos
+      add habilitado int null;
 
       update vehiculos set habilitado = 1;
 
@@ -114,3 +121,18 @@ alter table viajes DROP FOREIGN KEY IF EXISTS fk_viajes_cliente;
 
     ALTER TABLE `encuestas`
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+      CREATE TABLE `pagos` (
+        `id` int(11) NOT NULL,
+        `viaje_id` int(11) DEFAULT NULL,
+        `usuario_id` int(11) DEFAULT NULL,
+        `cantidad` float COLLATE utf8_unicode_ci NULL,
+        `metodo` float COLLATE utf8_unicode_ci NULL
+
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+      ALTER TABLE `pagos`
+        ADD PRIMARY KEY (`id`);
+
+      ALTER TABLE `pagos`
+        MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

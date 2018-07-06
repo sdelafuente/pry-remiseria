@@ -37,7 +37,6 @@
                     <th>Nombre</th>
                     <th>Mail</th>
                     <th>rol</th>
-                    <th>Foto</th>
                     <th>Borrar</th>
                     <th>Modificar</th>
                 </tr>
@@ -45,27 +44,19 @@
                 <tbody>
                 <tr *ngFor="let usuario of arrayUsuarios" [ngStyle]="{'background-color': (usuario.rol == 'admin') ? '#78909c' : '#cfd8dc' }">
 
-                    <td>
-                        {{usuario.username}}
-                    </td>
+                    <td>{{usuario.username}}</td>
                     <td>{{usuario.email}}</td>
                     <td>{{usuario.rol}}</td>
-                    <td>
-                        <!--img width="20" height="20" [src]="'http://localhost:8080/fotos/'+usuario.email+'.jpg'"  alt="" /-->
-                        foto
-                    </td>
                     <td>
                         <div class="">
                             <button class="btn sm-secondary" name="btnBorrar+'usuario.email'"  (click)="borrarUsuario(usuario)">Eliminar</button>
                         </div>
-
                         <!--input type="button" class="btn sm-primary" name="btnBorrar+'usuario.email'" (click)="borrarUsuario(usuario)" value="Eliminar" /-->
                     </td>
                     <td >
                         <div class="">
                             <button class="btn sm-secondary" id="btnModificar_+'usuario.id'" (click)="cargarObjeto(usuario)" >Modificar</button>
                         </div>
-
                         <!--input type="button" class="btn sm-primary"id="btnModificar_+'usuario.id'" (click)="cargarObjeto(usuario)" value="Modificar"-->
                     </td>
                 </tr>

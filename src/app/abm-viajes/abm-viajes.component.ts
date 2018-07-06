@@ -6,6 +6,7 @@ import { DirectionsMapDirective } from '../google-map.directive';
 import {} from '@types/googlemaps';
 import { Router } from '@angular/router';
 import { ServicioService } from '../servicios/servicio.service';
+import { CategoriasPipe } from '../pipes/categorias.pipe';
 
 declare var google: any;
 declare var jQuery: any;
@@ -21,6 +22,7 @@ export class Viaje {
     public distancia: any;
     public token: any;
     public nivel: any;
+    public vehiculo_id: any;
 
     constructor() { }
 }
@@ -52,8 +54,11 @@ export class AbmViajesComponent implements OnInit {
     private destinoLat: any;
     private destinoLng: any;
     private nivel: any;
+    private vehiculo_id: any;
     private objViaje: Viaje;
     public viajeSolicitado: boolean;
+    public origin: any ; // its a example aleatory position
+    public destination: any; // its a example aleatory position
 
     @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
@@ -64,8 +69,8 @@ export class AbmViajesComponent implements OnInit {
 
     @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
 
-    public origin: any ; // its a example aleatory position
-    public destination: any; // its a example aleatory position
+    @Input() arrayAutos: Array<any>;
+
     constructor(
         private router: Router,
         private mapsAPILoader: MapsAPILoader,
@@ -85,6 +90,11 @@ export class AbmViajesComponent implements OnInit {
     ngOnInit() {
         this.objViaje = new Viaje();
         this.viajeSolicitado = false;
+        this.vehiculo_id = -1;
+        this.metodoPago = -1;
+        this.arrayAutos = new Array<any>();
+        this.cargarAutos();
+
         // set google maps defaults
         this.zoom = 4;
         this.latitude = -34.603722;
@@ -114,6 +124,19 @@ export class AbmViajesComponent implements OnInit {
             this.setupPlaceChangedListener(autocompleteOutput, 'DES');
         });
     }
+
+    // Traigo los autos habilitados
+    cargarAutos() {
+
+        this.ws.getObjs('/vehiculo/habilitados/')
+        .then( data => {
+            this.arrayAutos = data;
+        })
+        .catch( error => {
+            console.log(error);
+        });
+    }
+
 
     private setupPlaceChangedListener(autocomplete: any, mode: any ) {
 
@@ -198,6 +221,7 @@ export class AbmViajesComponent implements OnInit {
 
 
     pedirViaje() {
+
         const dateString = this.fechaViaje;
         const newDate = new Date(dateString);
 
@@ -210,6 +234,7 @@ export class AbmViajesComponent implements OnInit {
         this.objViaje.duracion = this.estimatedTime;
         this.objViaje.distancia = this.estimatedDistance;
         this.objViaje.nivel = this.nivel;
+        this.objViaje.vehiculo_id = this.vehiculo_id;
         this.objViaje.token = localStorage.getItem('token');
 
         this.ws.postViaje( this.objViaje, '/viaje/' )

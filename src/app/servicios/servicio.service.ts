@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { Http, Response  } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -12,8 +14,8 @@ import { Usuario } from '../usuario';
 @Injectable()
 export class ServicioService {
 
-      //  url = 'http://localhost/api';
-      url = 'https://proyectocuatro.000webhostapp.com/api';
+    // url = 'http://localhost/api';
+    url = 'https://proyectocuatro.000webhostapp.com/api';
 
       constructor(public http: Http, private authHttp: AuthHttp) { }
 
@@ -41,8 +43,9 @@ export class ServicioService {
       }
 
       postLogin(user: Object, ruta: string) {
-          console.log(ruta);
-        return this.http.post(this.url + ruta, user)
+          const headers = new Headers({ 'Content-Type': 'application/json' });
+          const options = new RequestOptions({ headers: headers });
+        return this.http.post(this.url + ruta, user, options)
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );
@@ -76,10 +79,10 @@ export class ServicioService {
       }
 
       public CargarUsuario( url: string, usuario: Usuario ) {
-          return this.http
-          .post(this.url  + '/usuario' + url, usuario )
-          .map((res: Response) => res.json());
+          return this.http.post(this.url  + '/usuario' + url, usuario );
+          // .map((res: Response) => res.json());
       }
+
 
       public BorrarUsuario( url: string, usuario: Usuario ) {
           // console.log({'tipo':'admin','email':usuario.email});
@@ -101,6 +104,10 @@ export class ServicioService {
           .toPromise()
           .then( this.extractData )
           .catch( this.handleError );
+      }
+
+      createArticle(article: any): Observable<any> {
+           return this.http.post(this.url + '/usuario/', article).map((res: Response) => res.json());
       }
 
       private extractData(res: Response) {

@@ -4,33 +4,27 @@
 
         <!-- LA TABLA YA TIENE ESTILOS PRECARGADOS EN EL CSS -->
         <table id="customers" class="table rounded" >
-            <!--tr>
-                <th>Nombre</th>
-                <th>Mail</th>
-                <th>rol</th>
-                <th>Foto</th>
-                <th>Borrar</th>
-                <th>Modificar</th>
-            </tr-->
             <tr>
                 <th>Fecha</th>
                 <th>Duracion</th>
                 <th>Distancia</th>
-                <th>Nivel</th>
                 <th>Pago</th>
                 <th>Modificar</th>
                 <th>Cancelar</th>
             </tr>
+            <tr>
+                <td colspan="6"><div *ngIf="mostrarLoader" class="loader"></div></td>
+            </tr>
             <tr  *ngFor="let viaje of arrayViajes" [ngStyle]="{'background-color': (viaje.id%2 == 0) ? '#66CCFF' : '#FF9999' }">
-                <td>{{viaje.fechayhora | date:'dd/MM/yyyy HH:mm'}}</td>
+                <!-- <td>{{viaje.fechayhora | date:'dd/MM/yyyy HH:mm'}}</td> -->
+                <td>{{viaje.fechayhora}}</td>
                 <td>{{viaje.duracion}}</td>
                 <td>{{viaje.distancia}}</td>
-                <td>
+                <!-- <td>
                     <span *ngIf="viaje.nivel==0">Standard</span>
                     <span *ngIf="viaje.nivel==1">Confort</span>
                     <span *ngIf="viaje.nivel==2">Premium</span>
-                </td>
-
+                </td> -->
                 <td>
                     <span *ngIf="viaje.tipo_pago==0">Efectivo</span>
                     <span *ngIf="viaje.tipo_pago==1">Débito</span>
