@@ -59,6 +59,11 @@ export class AbmViajesComponent implements OnInit {
     public viajeSolicitado: boolean;
     public origin: any ; // its a example aleatory position
     public destination: any; // its a example aleatory position
+    public captchaView: any;
+    public captchaRespuesta: any;
+    public captchaError: boolean;
+
+    // abcdefghijqlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
 
     @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
@@ -94,6 +99,7 @@ export class AbmViajesComponent implements OnInit {
         this.metodoPago = -1;
         this.arrayAutos = new Array<any>();
         this.cargarAutos();
+        this.cargarCaptcha();
 
         // set google maps defaults
         this.zoom = 4;
@@ -124,6 +130,7 @@ export class AbmViajesComponent implements OnInit {
             this.setupPlaceChangedListener(autocompleteOutput, 'DES');
         });
     }
+
 
     // Traigo los autos habilitados
     cargarAutos() {
@@ -219,11 +226,50 @@ export class AbmViajesComponent implements OnInit {
      // Write your Google Map Custom Style Code Here.
    }
 
+   //  getRandomInt(min, max) {
+   //      return Math.floor(Math.random() * (max - min + 1)) + min;
+   //  }
+   //
+   // this.generate = function() {
+   //     this.number = this.getRandomInt(1, 100);
+   // };
+
+    // this.generate();
+
+    cargarCaptcha() {
+        const CADENA = 'abcdefghijqlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let numero: any;
+        let stringCaptcha: any;
+
+        this.captchaError = false;
+        stringCaptcha = '';
+        for (let i = 0; i < 6; i++) {
+            numero = Math.floor(Math.random() * (CADENA.length - 1));
+            stringCaptcha += CADENA[numero];
+        }
+        this.captchaView = stringCaptcha;
+    }
+
+    validarCaptcha() {
+        if (this.captchaView !== this.captchaRespuesta) {
+            return false;
+        }
+        return true;
+    }
 
     pedirViaje() {
 
         const dateString = this.fechaViaje;
         const newDate = new Date(dateString);
+
+        if (true === this.captchaError) {
+            return false;
+        }
+
+        if (!this.validarCaptcha()) {
+            this.captchaError = true;
+            return false;
+        }
 
         this.objViaje.lat_o = this.origenLat;
         this.objViaje.lng_o = this.origenLng;

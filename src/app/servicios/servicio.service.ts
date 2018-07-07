@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Response  } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -14,8 +13,8 @@ import { Usuario } from '../usuario';
 @Injectable()
 export class ServicioService {
 
-    // url = 'http://localhost/api';
-    url = 'https://proyectocuatro.000webhostapp.com/api';
+    url = 'http://localhost/api';
+    // url = 'https://proyectocuatro.000webhostapp.com/api';
 
       constructor(public http: Http, private authHttp: AuthHttp) { }
 
@@ -43,9 +42,12 @@ export class ServicioService {
       }
 
       postLogin(user: Object, ruta: string) {
+
           const headers = new Headers({ 'Content-Type': 'application/json' });
-          const options = new RequestOptions({ headers: headers });
-        return this.http.post(this.url + ruta, user, options)
+          // const options = new RequestOptions({ headers: headers });
+          const reqOptions =  new RequestOptions({ headers: headers });
+
+        return this.http.post(this.url + ruta, user, reqOptions)
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );

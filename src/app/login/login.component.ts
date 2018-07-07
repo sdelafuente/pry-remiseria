@@ -59,40 +59,40 @@ export class LoginComponent implements OnInit {
 
       if (this.tokenCaptcha !== 'null' || true) {
 
-          this.ws.createArticle(this.user )
-          .subscribe(
-             data => {
-                 if ( data.token ) {
-                     localStorage.setItem('token', data.token);
-                     localStorage.setItem('user', JSON.stringify(data.usuario));
-                     this.router.navigateByUrl('/inicio');
-                     // location.reload();
-                 }
-                return true;
-             },
-             error => {
-               console.error('Error al tratar de hacer login.');
-               return false;
-             }
-          );
+          // this.ws.createArticle(this.user )
+          // .subscribe(
+          //    data => {
+          //        if ( data.token ) {
+          //            localStorage.setItem('token', data.token);
+          //            localStorage.setItem('user', JSON.stringify(data.usuario));
+          //            this.router.navigateByUrl('/inicio');
+          //            // location.reload();
+          //        }
+          //       return true;
+          //    },
+          //    error => {
+          //      console.error('Error al tratar de hacer login.');
+          //      return false;
+          //    }
+          // );
 
-          // this.ws.postLogin( this.user, this.ruta )
-          // .then( data => {
-          //       console.log(data);
-          //     /*
-          //       hacer la logica para que si no existe el mail.
-          //       Vaya a registrarase.
-          //     */
-              // if ( data.token ) {
-              //     localStorage.setItem('token', data.token);
-              //     localStorage.setItem('user', JSON.stringify(data.usuario));
-              //     this.router.navigateByUrl('/inicio');
-              //     // location.reload();
-              // }
-          // })
-          // .catch( e => {
-          //   console.log(e);
-          // } );
+          this.ws.postLogin( this.user, this.ruta )
+          .then( data => {
+                console.log(data);
+              /*
+                hacer la logica para que si no existe el mail.
+                Vaya a registrarase.
+              */
+              if ( data.token ) {
+                  localStorage.setItem('token', data.token);
+                  localStorage.setItem('user', JSON.stringify(data.usuario));
+                  this.router.navigateByUrl('/inicio');
+                  // location.reload();
+              }
+          })
+          .catch( e => {
+            console.log(e);
+          } );
 
 
       }
@@ -141,4 +141,5 @@ export class LoginComponent implements OnInit {
   private handleLoad() {
       localStorage.setItem('token_captcha', null);
   }
+
 }

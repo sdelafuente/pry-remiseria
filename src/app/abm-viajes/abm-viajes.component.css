@@ -1,4 +1,9 @@
 .sebm-google-map-container {
-       height: 240px;
+       height: 200px;
        width: 100%;
      }
+
+.cajaWarning{
+    width:auto;
+    height: 20px;
+}
