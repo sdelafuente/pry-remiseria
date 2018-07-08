@@ -6,12 +6,29 @@ CREATE TABLE `usuario` (
   `rol` varchar(255) COLLATE utf8_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `usuario`
+`token` varchar(255) COLLATE utf8_unicode_ci NULL
+
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 
 CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
@@ -26,46 +43,22 @@ CREATE TABLE `viajes` (
   `nivel` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   `duracion` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL,
-
-
+  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE `cliente`
+ALTER TABLE `viajes`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `cliente`
+ALTER TABLE `viajes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
-  ALTER TABLE `viajes`
-    ADD PRIMARY KEY (`id`);
-
-  ALTER TABLE `viajes`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --Estado es 0 1 2 pedido realziado cancelado
-ALTER TABLE `viajes`
-  ADD CONSTRAINT `fk_viajes_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`);
-
-  alter table viajes
-  add  `distancia` varchar(255) COLLATE utf8_unicode_ci NULL;
-
-  alter table viajes
-  add  `duracion` varchar(255) COLLATE utf8_unicode_ci NULL;
-
-  alter table viajes
-  add vehiculo_id int null;
 
 INSERT INTO `usuario` (`username`, `password`,`email`, `rol`) VALUES
 ('admin', '12345678a','admin@gmail.com','admin'),
-('Remisero I', '12345678a','remisero1@gmail.com','remisero'),
-('Encargado I', '12345678a','encargado1@gmail.com','encargado');
+('Remisero I', '12345678a','remisero@gmail.com','remisero'),
+('Cliente I', '12345678a','santiago.daniel.delafuente@hotmail.com','cliente'),
+('Encargado I', '12345678a','encargado@gmail.com','encargado');
 
 INSERT INTO `cliente` (`username`, `password`,`email`) VALUES
 ('Noelia Nieres', '12345678a','noe.nieres@gmail.com'),
@@ -73,10 +66,12 @@ INSERT INTO `cliente` (`username`, `password`,`email`) VALUES
 
 CREATE TABLE `vehiculos` (
   `id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
   `marca` varchar(255) COLLATE utf8_unicode_ci NULL,
   `patente` varchar(255) COLLATE utf8_unicode_ci NULL,
   `ocupantes` varchar(255) COLLATE utf8_unicode_ci NULL,
-  `categoria` varchar(255) COLLATE utf8_unicode_ci NULL
+  `categoria` varchar(255) COLLATE utf8_unicode_ci NULL,
+  `habilitado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 ALTER TABLE `vehiculos`
@@ -84,21 +79,6 @@ ALTER TABLE `vehiculos`
 
 ALTER TABLE `vehiculos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
-  alter table vehiculos
-  add usuario_id int null;
-
-  update vehiculos set usuario_id = -1;
-
-      alter table vehiculos
-      add habilitado int null;
-
-      alter table vehiculos
-      add habilitado int null;
-
-      update vehiculos set habilitado = 1;
-
-alter table viajes DROP FOREIGN KEY IF EXISTS fk_viajes_cliente;
 
     CREATE TABLE `encuestas` (
       `id` int(11) NOT NULL,

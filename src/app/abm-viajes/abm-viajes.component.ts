@@ -242,6 +242,8 @@ export class AbmViajesComponent implements OnInit {
         let stringCaptcha: any;
 
         this.captchaError = false;
+        this.captchaRespuesta = '';
+
         stringCaptcha = '';
         for (let i = 0; i < 6; i++) {
             numero = Math.floor(Math.random() * (CADENA.length - 1));

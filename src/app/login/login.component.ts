@@ -26,33 +26,33 @@ export class User {
 
 export class LoginComponent implements OnInit {
 
-  // public form:FormGroup;
-  // public email:AbstractControl;
-  // public password:AbstractControl;
-  // public submitted:boolean = false;
-  @Input() captchaElem: any;
+    // public form:FormGroup;
+    // public email:AbstractControl;
+    // public password:AbstractControl;
+    // public submitted:boolean = false;
+    @Input() captchaElem: any;
 
-  user: User = new User('', '');
-  isCondition = false;
-  ruta: string;
-  tokenCaptcha: string;
+    user: User = new User('', '');
+    isCondition = false;
+    ruta: string;
+    tokenCaptcha: string;
 
-  constructor( private router: Router, private ws: ServicioService) {
-    this.user.email = '';
-  }
+    constructor( private router: Router, private ws: ServicioService) {
+      this.user.email = '';
+    }
 
-  ngOnInit() {
-      this.isCondition = false;
-  }
+    ngOnInit() {
+        this.isCondition = false;
+    }
 
-  function(bool) {
+    function(bool) {
         this.isCondition = true;
-      if (bool) {
-        this.ruta = '/usuario/';
-      } else {
-        this.ruta = '/usuario/';
-      }
-  }
+        if (bool) {
+            this.ruta = '/usuario/';
+        } else {
+            this.ruta = '/usuario/';
+        }
+    }
 
   enviar() {
       // this.tokenCaptcha = localStorage.getItem('token_captcha');
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
 
           this.ws.postLogin( this.user, this.ruta )
           .then( data => {
-                console.log(data);
+                // console.log(data);
               /*
                 hacer la logica para que si no existe el mail.
                 Vaya a registrarase.
@@ -99,47 +99,47 @@ export class LoginComponent implements OnInit {
 
   }
 
-  admin() {
+    admin() {
         this.function(1);
         this.user.email = 'admin@gmail.com';
         this.user.clave = '12345678a';
-  }
+    }
 
-  encargado() {
+    encargado() {
         this.function(1);
-      this.user.email = 'encargado@gmail.com';
-      this.user.clave = '12345678a';
-  }
+        this.user.email = 'encargado@gmail.com';
+        this.user.clave = '12345678a';
+    }
 
-  remisero() {
+    remisero() {
         this.function(1);
-      this.user.email = 'remisero@gmail.com';
-      this.user.clave = '12345678a';
-  }
+        this.user.email = 'remisero@gmail.com';
+        this.user.clave = '12345678a';
+    }
 
-  cliente() {
+    cliente() {
         this.function(0);
-      this.user.email = 'santiago.daniel.delafuente@hotmail.com';
-      this.user.clave = '12345678a';
-  }
+        this.user.email = 'santiago.daniel.delafuente@hotmail.com';
+        this.user.clave = '12345678a';
+    }
 
-  cancelar() {
-      this.isCondition = false;
-      this.user.email = '';
-      this.user.clave = '';
-  }
+    cancelar() {
+        this.isCondition = false;
+        this.user.email = '';
+        this.user.clave = '';
+    }
 
 
-  private handleSuccess(recaptchaSuccess: any) {
-      localStorage.setItem('token_captcha', recaptchaSuccess);
-  }
+    private handleSuccess(recaptchaSuccess: any) {
+        localStorage.setItem('token_captcha', recaptchaSuccess);
+    }
 
-  private handleExpire(recaptchaSuccess: any) {
+    private handleExpire(recaptchaSuccess: any) {
       // localStorage.setItem('token_captcha', recaptchaSuccess);
-  }
+    }
 
-  private handleLoad() {
-      localStorage.setItem('token_captcha', null);
-  }
+    private handleLoad() {
+        localStorage.setItem('token_captcha', null);
+    }
 
 }

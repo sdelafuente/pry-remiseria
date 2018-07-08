@@ -27,10 +27,12 @@ import { ModificarViajeComponent } from './modificar-viaje/modificar-viaje.compo
 import { AbmVehiculosComponent } from './abm-vehiculos/abm-vehiculos.component';
 import { EncuestaComponent } from './encuesta/encuesta.component';
 import { CategoriasPipe } from './pipes/categorias.pipe';
+import { RegistroComponent } from './registro/registro.component';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent   },
+  { path: 'registro', component: RegistroComponent   },
   { path: 'inicio', component: InicioComponent, canActivate: [VerificarJWTService] },
   { path: 'viajes', component: AbmViajesComponent, canActivate: [VerificarJWTService]},
   { path: 'modificar', component: ModificarViajeComponent, canActivate: [VerificarJWTService]},
@@ -57,7 +59,8 @@ const appRoutes: Routes = [
     ModificarViajeComponent,
     AbmVehiculosComponent,
     EncuestaComponent,
-    CategoriasPipe
+    CategoriasPipe,
+    RegistroComponent
   ],
   imports: [
       AgmCoreModule.forRoot({
