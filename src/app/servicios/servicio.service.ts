@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -15,6 +15,7 @@ export class ServicioService {
 
     url = 'http://localhost/api';
     // url = 'https://proyectocuatro.000webhostapp.com/api';
+    // url = 'http://lodehumberto.epizy.com/api';
 
       constructor(public http: Http, private authHttp: AuthHttp) { }
 
@@ -43,22 +44,19 @@ export class ServicioService {
 
       postLogin(user: Object, ruta: string) {
 
-          const headers = new Headers({ 'Content-Type': 'application/json' });
-          // const options = new RequestOptions({ headers: headers });
-          const reqOptions =  new RequestOptions({ headers: headers });
-
-        return this.http.post(this.url + ruta, user, reqOptions)
+        return this.http.post(this.url + ruta, user)
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );
       }
 
       postViaje(viaje: Object, ruta: string) {
-          // console.log(viaje);
+
         return this.http.post(this.url + ruta, {viaje})
         .toPromise()
         .then( this.extractData )
         .catch( this.handleError );
+
       }
 
       /**
@@ -81,14 +79,12 @@ export class ServicioService {
       }
 
       public CargarUsuario( url: string, usuario: Usuario ) {
-          return this.http.post(this.url  + '/usuario' + url, usuario );
-          // .map((res: Response) => res.json());
+          return this.http.post(this.url  + '/usuario' + url, usuario )
+          .map((res: Response) => res.json());
       }
 
 
       public BorrarUsuario( url: string, usuario: Usuario ) {
-          // console.log({'tipo':'admin','email':usuario.email});
-
           return this.http
           .post(this.url  + '/usuario' + url, usuario )
           .map((res: Response) => res.json());

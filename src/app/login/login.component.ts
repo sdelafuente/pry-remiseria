@@ -2,11 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicioService } from '../servicios/servicio.service';
-// import { Http, Response } from '@angular/http';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/toPromise';
 
 export class User {
   public email = '';
@@ -26,10 +21,6 @@ export class User {
 
 export class LoginComponent implements OnInit {
 
-    // public form:FormGroup;
-    // public email:AbstractControl;
-    // public password:AbstractControl;
-    // public submitted:boolean = false;
     @Input() captchaElem: any;
 
     user: User = new User('', '');
@@ -54,10 +45,7 @@ export class LoginComponent implements OnInit {
         }
     }
 
-  enviar() {
-      // this.tokenCaptcha = localStorage.getItem('token_captcha');
-
-      if (this.tokenCaptcha !== 'null' || true) {
+    enviar() {
 
           // this.ws.createArticle(this.user )
           // .subscribe(
@@ -87,17 +75,13 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem('token', data.token);
                   localStorage.setItem('user', JSON.stringify(data.usuario));
                   this.router.navigateByUrl('/inicio');
-                  // location.reload();
               }
           })
           .catch( e => {
             console.log(e);
           } );
 
-
-      }
-
-  }
+    }
 
     admin() {
         this.function(1);

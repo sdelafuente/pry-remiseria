@@ -129,8 +129,6 @@ export class AbmVehiculosComponent implements OnInit {
             privVehiculo.habilitado = 1;
         }
 
-        // console.log(privVehiculo);
-
         this.service.postObj(privVehiculo, '/vehiculo/modificar/')
         .subscribe(
            data => {
@@ -152,7 +150,6 @@ export class AbmVehiculosComponent implements OnInit {
         if (vehiculo.habilitado === 1) {
             this.miVehiculo.habilitado =  1;
         }
-        // #javascriptcb.checked = true;
         return true;
     }
 

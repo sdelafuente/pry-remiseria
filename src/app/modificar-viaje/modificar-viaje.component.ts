@@ -40,7 +40,7 @@ export class ModificarViajeComponent implements OnInit {
               this.mostrarLoader = true;
               this.service.getObjs('/viaje/mios/' + this.tokenPayload.data.email)
               .then( data => {
-                   // console.log(data);
+
                   if (data.viajes !== null) {
                       this.arrayViajes = data.viajes;
                       this.mostrarLoader = false;

@@ -63,8 +63,6 @@ export class AbmViajesComponent implements OnInit {
     public captchaRespuesta: any;
     public captchaError: boolean;
 
-    // abcdefghijqlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
-
     @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
     @ViewChild('pickupOutput') pickupOutputElementRef: ElementRef;
@@ -130,7 +128,6 @@ export class AbmViajesComponent implements OnInit {
             this.setupPlaceChangedListener(autocompleteOutput, 'DES');
         });
     }
-
 
     // Traigo los autos habilitados
     cargarAutos() {
@@ -225,16 +222,6 @@ export class AbmViajesComponent implements OnInit {
    private getMapCusotmStyles() {
      // Write your Google Map Custom Style Code Here.
    }
-
-   //  getRandomInt(min, max) {
-   //      return Math.floor(Math.random() * (max - min + 1)) + min;
-   //  }
-   //
-   // this.generate = function() {
-   //     this.number = this.getRandomInt(1, 100);
-   // };
-
-    // this.generate();
 
     cargarCaptcha() {
         const CADENA = 'abcdefghijqlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
