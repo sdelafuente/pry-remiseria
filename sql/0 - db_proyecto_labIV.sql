@@ -1,3 +1,4 @@
+
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci NULL,
@@ -13,7 +14,7 @@ ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `usuario`
-`token` varchar(255) COLLATE utf8_unicode_ci NULL
+`token` varchar(512) COLLATE utf8_unicode_ci NULL
 
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
@@ -107,7 +108,8 @@ ALTER TABLE `vehiculos`
         `viaje_id` int(11) DEFAULT NULL,
         `usuario_id` int(11) DEFAULT NULL,
         `cantidad` float COLLATE utf8_unicode_ci NULL,
-        `metodo` float COLLATE utf8_unicode_ci NULL
+        `metodo` varchar(255) COLLATE utf8_unicode_ci NULL,
+        `cuenta` varchar(255) COLLATE utf8_unicode_ci NULL
 
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

@@ -54,23 +54,23 @@
 </nav>
 <nav class="pull-left navbar navbar-expand" *ngIf="verificarMenu()===3" >
     <div class="" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item" >
-            <a class="nav-link" routerLink="/inicio" routerLinkActive="">Inicio</a>
-        </li>
-        <!--li class="nav-item">
-            <a class="nav-link" routerLink="/viajes" routerLinkActive="">viajes</a>
-        </li-->
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/modificar" routerLinkActive="">Modificar</a>
-        </li>
-        <!--li class="nav-item">
-            <a class="nav-link"  routerLink="/usuarios" routerLinkActive="">Usuarios</a>
-        </li-->
-        <li class="nav-item">
-            <a  class="nav-link" [routerLink]="[]" (click)="salir()" routerLinkActive="">Logout</a>
-        </li>
-    </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <a class="nav-link" routerLink="/inicio" routerLinkActive="">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/remisero" routerLinkActive="">viajes</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="/modificar" routerLinkActive="">Modificar</a>
+            </li> -->
+            <!--li class="nav-item">
+                <a class="nav-link"  routerLink="/usuarios" routerLinkActive="">Usuarios</a>
+            </li-->
+            <li class="nav-item">
+                <a  class="nav-link" [routerLink]="[]" (click)="salir()" routerLinkActive="">Logout</a>
+            </li>
+        </ul>
     </div>
 </nav>
 <nav class="pull-left navbar navbar-expand" *ngIf="verificarMenu()===4" >
@@ -82,9 +82,9 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="/viajes" routerLinkActive="">Nuevo viaje</a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" routerLink="/encuesta" routerLinkActive="">Encuesta/Prueba</a>
-        </li> -->
+        </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/modificar" routerLinkActive="">Mis Viajes</a>
         </li>

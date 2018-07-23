@@ -52,10 +52,16 @@ export class AbmUsuariosComponent implements OnInit {
                 .catch( error => { console.log(error); });
             }
 
-        } else {
-            this.service.getObjs('/usuario/')
-            .then( data => { this.mostrarLista = true; this.arrayUsuarios = data; })
-            .catch( error => { console.log(error); });
+            if ('admin' === this.tokenPayload.data.rol) {
+
+                this.service.getObjs('/usuario/')
+                .then( data => {
+                    this.mostrarLista = true;
+                    this.arrayUsuarios = data;
+                })
+                .catch( error => { console.log(error); });
+            }
+
         }
 
     }

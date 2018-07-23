@@ -9,7 +9,7 @@
                 <th>Duracion</th>
                 <th>Distancia</th>
                 <th>Pago</th>
-                <th>Modificar</th>
+                <!-- <th>Modificar</th> -->
                 <th>Cancelar</th>
             </tr>
             <tr>
@@ -30,9 +30,9 @@
                     <span *ngIf="viaje.tipo_pago==1">Débito</span>
                     <span *ngIf="viaje.tipo_pago==2">Crédito</span>
                 </td>
-                <td >
+                <!-- <td >
                     <input type="button" id="btnModificar_+'viaje.id'" (click)="modificarViaje(viaje)" value="Modificar">
-                </td>
+                </td> -->
                 <td>
                     <input type="button" name="btnBorrar+'viaje.id'" (click)="cancelarViaje(viaje)" value="Cancelar" />
                 </td>

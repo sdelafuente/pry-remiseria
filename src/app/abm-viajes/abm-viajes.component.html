@@ -1,7 +1,7 @@
 <div class="col-md-12 bg-secondary rounded center">
     <div class="form-group">
         <form *ngIf="!viajeSolicitado"  (ngSubmit)="pedirViaje()" class="form-horizontal" #formViajes="ngForm" ngNativeValidate>
-
+            <!-- <button type="button" class="btn btn-default btn-auth" (click)="validarFecha()" >validarFecha</button> -->
             <input placeholder="Origen" autocorrect="off" autocapitalize="off" spellcheck="off"
             type="text" class="form-control" #pickupInput [formControl]="destinationInput" required>
 

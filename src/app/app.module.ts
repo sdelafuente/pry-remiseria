@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { NgxCaptchaModule } from 'ngx-captcha';
-
+import {FileUploadModule} from 'primeng/fileupload';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -28,6 +29,7 @@ import { AbmVehiculosComponent } from './abm-vehiculos/abm-vehiculos.component';
 import { EncuestaComponent } from './encuesta/encuesta.component';
 import { CategoriasPipe } from './pipes/categorias.pipe';
 import { RegistroComponent } from './registro/registro.component';
+import { RemiseroComponent } from './remisero/remisero.component';
 
 
 const appRoutes: Routes = [
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
   { path: 'vehiculos', component: AbmVehiculosComponent, canActivate: [VerificarJWTService]},
   { path: 'usuarios', component: AbmUsuariosComponent, canActivate: [VerificarJWTService] },
   { path: 'encuesta', component: EncuestaComponent, canActivate: [VerificarJWTService] },
+  { path: 'remisero', component: RemiseroComponent, canActivate: [VerificarJWTService] },
   // { path: 'viajes', component: AbmViajesComponent   },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }
@@ -60,7 +63,8 @@ const appRoutes: Routes = [
     AbmVehiculosComponent,
     EncuestaComponent,
     CategoriasPipe,
-    RegistroComponent
+    RegistroComponent,
+    RemiseroComponent
   ],
   imports: [
       AgmCoreModule.forRoot({
@@ -72,6 +76,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     JwtModule,
+    FileUploadModule,
     RouterModule.forRoot(appRoutes),
     NgxCaptchaModule.forRoot({  reCaptcha2SiteKey: '6LeFR14UAAAAAEY8fJPkrNEV9PNDmoQgV708jdhZ'  })
   ],

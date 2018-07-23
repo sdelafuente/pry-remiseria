@@ -62,6 +62,8 @@ export class AbmViajesComponent implements OnInit {
     public captchaView: any;
     public captchaRespuesta: any;
     public captchaError: boolean;
+    private fechaAhora: any;
+    private fechaValidar: any;
 
     @ViewChild('pickupInput') pickupInputElementRef: ElementRef;
 
@@ -163,13 +165,14 @@ export class AbmViajesComponent implements OnInit {
                 this.vc.destinationPlaceId = place.place_id;
             }
 
-             if (this.vc.directionsDisplay === undefined) {
+            if (this.vc.directionsDisplay === undefined) {
                     this.mapsAPILoader.load().then(() => {
                      this.vc.directionsDisplay = new google.maps.DirectionsRenderer;
                  });
-           }
+            }
 
              // Update the directions
+             console.log();
              this.vc.updateDirections();
              this.zoom = 12;
 
@@ -178,20 +181,19 @@ export class AbmViajesComponent implements OnInit {
                 this.origenLng = this.vc.origin.longitude;
                 this.destinoLat = this.vc.destination.latitude;
                 this.destinoLng = this.vc.destination.longitude;
-                this.getDistanceAndDuration();
+
+                // this.getDistanceAndDuration();
              }
 
-             // this.estimatedTime = localStorage.getItem('duracion');
-             // this.estimatedTime = '1000 km';
-           });
-
+            });
         });
 
    }
 
     getDistanceAndDuration() {
-        this.estimatedTime = localStorage.getItem('duracion');
-        this.estimatedDistance = localStorage.getItem('distancia');
+
+        // this.estimatedTime = localStorage.getItem('duracion');
+        // this.estimatedDistance = localStorage.getItem('distancia');
     }
 
     scrollToBottom(): void {
@@ -248,9 +250,6 @@ export class AbmViajesComponent implements OnInit {
 
     pedirViaje() {
 
-        const dateString = this.fechaViaje;
-        const newDate = new Date(dateString);
-
         if (true === this.captchaError) {
             return false;
         }
@@ -260,14 +259,22 @@ export class AbmViajesComponent implements OnInit {
             return false;
         }
 
+        // Valido que la fecha para el viaje no sea menor a la fecha actual
+        if (!this.validarFecha()) {
+            this.cargarCaptcha();
+            return false;
+        }
+
+        const viaje = new Date(this.fechaViaje);
+
         this.objViaje.lat_o = this.origenLat;
         this.objViaje.lng_o = this.origenLng;
         this.objViaje.lat_d = this.destinoLat;
         this.objViaje.lng_d = this.destinoLng;
         this.objViaje.tipo_pago = this.metodoPago;
-        this.objViaje.fechayhora =  this.fechaViaje; // newDate;
-        this.objViaje.duracion = this.estimatedTime;
-        this.objViaje.distancia = this.estimatedDistance;
+        this.objViaje.fechayhora =  viaje.toLocaleString(); // this.fechaViaje; // newDate;
+        this.objViaje.duracion = this.vc.estimatedTime; // this.estimatedTime;
+        this.objViaje.distancia = this.vc.estimatedDistance; // this.estimatedDistance;
         this.objViaje.nivel = this.nivel;
         this.objViaje.vehiculo_id = this.vehiculo_id;
         this.objViaje.token = localStorage.getItem('token');
@@ -276,13 +283,23 @@ export class AbmViajesComponent implements OnInit {
         .then( data => {
             this.viajeSolicitado = true;
             this.router.navigateByUrl('/encuesta');
-           /*
-             hacer la logica para que si no existe el mail.
-             Vaya a registrarase.
-           */
        })
        .catch( e => {
            console.log(e);
        } );
+   }
+
+   // Funcion para validar la fecha actual
+   // Si da true, corta ejecucion y limpia el campo fechaViaje
+   validarFecha() {
+
+       this.fechaAhora = new Date();
+       this.fechaValidar = new Date(this.fechaViaje);
+
+       if (this.fechaAhora.toLocaleString() > this.fechaValidar.toLocaleString()) {
+           this.fechaViaje = null;
+           return false;
+       }
+       return true;
    }
 }
