@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 //  Servicios
 import { ServicioService } from '../servicios/servicio.service';
 
@@ -10,6 +13,7 @@ export class Vehiculo {
   public categoria: any;
   public ocupantes: any;
   public habilitado: any;
+
 
   constructor(patente, marca, categoria, ocupantes, usuario_id) {
       this.patente = patente;
@@ -40,9 +44,12 @@ export class AbmVehiculosComponent implements OnInit {
     vehiculo: Vehiculo;
     public miVehiculo = new Vehiculo('', '', '', '', -1);
 
+    data: any = {};
+
     constructor(private service: ServicioService) {
         this.arrayVehiculos = new Array<any>();
         this.arrayRemos = new Array<any>();
+        this.data = this.arrayVehiculos;
     }
 
     ngOnInit() {
@@ -57,7 +64,11 @@ export class AbmVehiculosComponent implements OnInit {
     buscarTodos() {
 
         this.service.getObjs('/vehiculo/')
-        .then( data => { this.mostrarLista = true; this.arrayVehiculos = data; })
+        .then( data => {
+            this.mostrarLista = true;
+            this.arrayVehiculos = data;
+            this.data = data;
+        })
         .catch( error => { console.log(error); });
     }
 
@@ -167,4 +178,23 @@ export class AbmVehiculosComponent implements OnInit {
            }
         );
     }
+
+    desPdf() {
+     let doc = new jsPDF();
+     let col = ['id', 'Marca', 'Patente', 'Ocupantes', 'Habilitado']
+     let rows = [];
+
+    let itemNew = this.data;
+
+    itemNew.forEach(element => {
+        let temp = [element.id, element.marca, element.patente, element.ocupantes , element.habilitado];
+        rows.push(temp);
+
+    });
+
+        doc.autoTable(col, rows, { startY: 10 });
+
+        doc.save('listado.pdf');
+  }
+
 }

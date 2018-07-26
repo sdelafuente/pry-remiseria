@@ -190,10 +190,20 @@ export class AbmViajesComponent implements OnInit {
 
    }
 
-    getDistanceAndDuration() {
+   getDistanceAndDuration() {
+   }
 
-        // this.estimatedTime = localStorage.getItem('duracion');
-        // this.estimatedDistance = localStorage.getItem('distancia');
+    getDistanciaAndDuracion() {
+        let duracion: any;
+        let distancia: any;
+        duracion = localStorage.getItem('duracion');
+        distancia = localStorage.getItem('distancia');
+
+        if (duracion !== null && distancia !== null) {
+            this.estimatedTime = localStorage.getItem('duracion');
+            this.estimatedDistance = localStorage.getItem('distancia');
+        }
+
     }
 
     scrollToBottom(): void {

@@ -29,8 +29,8 @@
             </div>
             <label class="control-label" for="respuesta_6">¿Esta conforme con la calidad del servicio?:</label>
             <div class="">
-                    <input type="radio" name="respuesta_6"  value="SI">Si
-                    <input type="radio" name="respuesta_6"  value="NO">No
+                    <input type="radio" [(ngModel)]="respuesta_6" name="respuesta_6" value="SI" [ngModelOptions]="{standalone: true}">Si
+                    <input type="radio" [(ngModel)]="respuesta_6" name="respuesta_6" value="NO" [ngModelOptions]="{standalone: true}">No
             </div>
             <label class="control-label" for="respuesta_2">¿Que marca de vehiculos le interesa?</label>
             <div class="">
@@ -43,13 +43,14 @@
 
             <label class="control-label" for="respuesta_4">¿Habla de política mientras viaja?</label>
             <div class="">
-                  <input id="respuesta_4" class="form-control" [(ngModel)]="respuesta_4" name="respuesta_4" required>
+                <input type="radio" [(ngModel)]="respuesta_4" name="respuesta_4" value="SI" />Si
+                <input type="radio" [(ngModel)]="respuesta_4" name="respuesta_4" value="NO" />No
             </div>
             <label class="control-label" for="respuesta_7">¿Recomendaria la aplicacion a algún conocido?:</label>
             <div class="">
-                <input type="radio" name="respuesta_7"  value="SI">Si
-                <input type="radio" name="respuesta_7"  value="NO">No
-                <input type="radio" name="respuesta_7"  value="NI">Tal vez
+                <input type="radio" [(ngModel)]="respuesta_7" value="SI" [ngModelOptions]="{standalone: true}">Si
+                <input type="radio" [(ngModel)]="respuesta_7" value="NO" [ngModelOptions]="{standalone: true}">No
+                <input type="radio" [(ngModel)]="respuesta_7" value="NI" [ngModelOptions]="{standalone: true}">Tal vez
             </div>
 
             <label class="control-label" for="respuesta_8">¿?:</label>

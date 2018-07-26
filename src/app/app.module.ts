@@ -30,6 +30,7 @@ import { EncuestaComponent } from './encuesta/encuesta.component';
 import { CategoriasPipe } from './pipes/categorias.pipe';
 import { RegistroComponent } from './registro/registro.component';
 import { RemiseroComponent } from './remisero/remisero.component';
+import { FotosComponent } from './fotos/fotos.component';
 
 
 const appRoutes: Routes = [
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     EncuestaComponent,
     CategoriasPipe,
     RegistroComponent,
-    RemiseroComponent
+    RemiseroComponent,
+    FotosComponent
   ],
   imports: [
       AgmCoreModule.forRoot({

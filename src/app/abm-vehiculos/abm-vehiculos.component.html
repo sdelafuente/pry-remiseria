@@ -1,4 +1,6 @@
 <div class="row">
+    <!-- <angular2csv [data]="data" class="button button5" filename="arrayVehiculos" [options]="options"></angular2csv> -->
+
     <div class="col-md-12 bg-secondary rounded">
         <form class="" >
             <div class="form-group">
@@ -37,8 +39,11 @@
     </div>
 </div>
 <div class="row">
+
     <div class="col-md-12 bg-secondary rounded text-uppercase">
-        <h4 class="text-muted" >Lista de Vehiculos</h4>
+        <div class="inner" >
+            <button class="btn sm-secondary" (click)="desPdf()">Descargar PDF</button>
+        </div>
             <table class="table rounded" *ngIf="mostrarLista">
                 <thead>
                   <tr class="grey">

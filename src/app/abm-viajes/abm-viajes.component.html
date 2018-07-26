@@ -17,13 +17,13 @@
                 <input type="text" [(ngModel)]="estimatedTime" name="tiempo" readonly>
                 <input type="text" [(ngModel)]="estimatedDistance" name="distancia" value="" readonly>
             </div>
-            <div class="form-control">
+            <div class="form-control" (mouseenter) ="getDistanciaAndDuracion()">
                 <label for="fechaViaje">Fecha:</label>
                 <input id="fechaViaje" [(ngModel)]="fechaViaje" type="datetime-local"
                 min="startDate" [ngModelOptions]="{standalone: true}" required>
                 <br />
             </div>
-            <div class="form-control">
+            <div class="form-control" (mouseenter) ="getDistanciaAndDuracion()">
                 <label for="metodoPago">Metodo de Pago:</label>
                 <select class="bootstrap-select" [(ngModel)]="metodoPago" [ngModelOptions]="{standalone: true}" required>
                     <option value="-1">Seleccione modo de pago...</option>

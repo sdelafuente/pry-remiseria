@@ -17,6 +17,8 @@ export class ModificarViajeComponent implements OnInit {
     private token: any;
     private tokenPayload: any;
     private mostrarLoader: boolean;
+    private esCliente: boolean;
+
 
     @Input() arrayViajes: Array<any>;
     @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
@@ -28,6 +30,7 @@ export class ModificarViajeComponent implements OnInit {
     ngOnInit() {
         this.buscarTodos();
         this.mostrarLoader = false;
+        this.esCliente = false;
     }
 
     //  Traigo todas las personas
@@ -35,8 +38,11 @@ export class ModificarViajeComponent implements OnInit {
 
         this.token = localStorage.getItem('token');
         if (this.token !== null) {
+            console.log('this.token !== null');
           this.tokenPayload = jwt_decode(this.token);
-          if (null !== this.tokenPayload.data.email) {
+          console.log();
+          if (null !== this.tokenPayload.data.email && this.tokenPayload.data.rol === 'cliente') {
+              console.log('cliente');
               this.mostrarLoader = true;
               this.service.getObjs('/viaje/mios/' + this.tokenPayload.data.email)
               .then( data => {
@@ -44,6 +50,23 @@ export class ModificarViajeComponent implements OnInit {
                   if (data.viajes !== null) {
                       this.arrayViajes = data.viajes;
                       this.mostrarLoader = false;
+                      this.esCliente = true;
+                  }
+
+                })
+              .catch( error => { console.log(error); this.mostrarLoader = false; });
+          }
+
+          if (null !== this.tokenPayload.data.email && this.tokenPayload.data.rol === 'encargado') {
+
+              this.mostrarLoader = true;
+              this.service.getObjs('/viaje/')
+              .then( data => {
+
+                  if (data !== null) {
+                      this.arrayViajes = data;
+                      this.mostrarLoader = false;
+
                   }
 
                 })

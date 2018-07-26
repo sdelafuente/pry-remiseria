@@ -73,11 +73,11 @@ export class EncuestaComponent implements OnInit {
         this.miEncuesta.respuesta_7 = this.respuesta_7;
         this.miEncuesta.respuesta_8 = this.respuesta_8;
         this.miEncuesta.token = localStorage.getItem('token');
-        console.log(this.miEncuesta);
+        // console.log(this.miEncuesta);
         this.ws.postObj( this.miEncuesta, '/encuesta/' )
         .subscribe(
            data => {
-                console.log(data);
+                // console.log(data);
                // this.encuestaCargada = true;
                this.router.navigateByUrl('/inicio');
            },

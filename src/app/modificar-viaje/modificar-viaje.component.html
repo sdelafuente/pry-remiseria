@@ -9,13 +9,14 @@
                 <th>Duracion</th>
                 <th>Distancia</th>
                 <th>Pago</th>
+                <th>Estado</th>
                 <!-- <th>Modificar</th> -->
                 <th>Cancelar</th>
             </tr>
             <tr>
                 <td colspan="6"><div *ngIf="mostrarLoader" class="loader"></div></td>
             </tr>
-            <tr  *ngFor="let viaje of arrayViajes" [ngStyle]="{'background-color': (viaje.id%2 == 0) ? '#66CCFF' : '#FF9999' }">
+            <tr  *ngFor="let viaje of arrayViajes" [ngStyle]="{'background-color': (viaje.estado == 1) ? '#2ECC40 ' : '#cfd8dc' }">
                 <!-- <td>{{viaje.fechayhora | date:'dd/MM/yyyy HH:mm'}}</td> -->
                 <td>{{viaje.fechayhora}}</td>
                 <td>{{viaje.duracion}}</td>
@@ -30,11 +31,18 @@
                     <span *ngIf="viaje.tipo_pago==1">Débito</span>
                     <span *ngIf="viaje.tipo_pago==2">Crédito</span>
                 </td>
+                <td>
+                    <span *ngIf="viaje.estado==-1">Cancelado</span>
+                    <span *ngIf="viaje.estado==0">Finalizado</span>
+                    <span *ngIf="viaje.estado==1">Activo</span>
+                </td>
                 <!-- <td >
                     <input type="button" id="btnModificar_+'viaje.id'" (click)="modificarViaje(viaje)" value="Modificar">
                 </td> -->
                 <td>
-                    <input type="button" name="btnBorrar+'viaje.id'" (click)="cancelarViaje(viaje)" value="Cancelar" />
+                    <div *ngIf="esCliente"  class="">
+                        <input type="button" name="btnBorrar+'viaje.id'" (click)="cancelarViaje(viaje)" value="Cancelar" />
+                    </div>
                 </td>
             </tr>
         </table>
