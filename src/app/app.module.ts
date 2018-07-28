@@ -43,6 +43,7 @@ const appRoutes: Routes = [
   { path: 'usuarios', component: AbmUsuariosComponent, canActivate: [VerificarJWTService] },
   { path: 'encuesta', component: EncuestaComponent, canActivate: [VerificarJWTService] },
   { path: 'remisero', component: RemiseroComponent, canActivate: [VerificarJWTService] },
+  { path: 'fotos', component: FotosComponent, canActivate: [VerificarJWTService] },
   // { path: 'viajes', component: AbmViajesComponent   },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }

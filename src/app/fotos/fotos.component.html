@@ -1,3 +1,30 @@
-<p>
-  fotos works!
-</p>
+<div class="row">
+
+    <div class="col-md-12 bg-secondary rounded text-uppercase">
+            <table class="table rounded" *ngIf="mostrarLista">
+                <thead>
+                  <tr class="grey">
+                    <th>ID</th>
+                    <th>foto 1</th>
+                    <th>foto 2</th>
+                    <th>foto 3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let encuesta of arrayEncuestas" [ngStyle]="{'background-color': (encuesta.id%2 === 0) ? '#78909c' : '#cfd8dc' }">
+
+                    <td>
+                        {{encuesta.id}}
+                    </td>
+                    <!-- <td><img class="" [src]="('http://lodehumberto.epizy.com/api/fotos/' + encuesta.foto_1)" height="50" width="50"></td>
+                    <td><img class="" [src]="('http://lodehumberto.epizy.com/api/fotos/' + encuesta.foto_2)" height="50" width="50"></td>
+                    <td><img class="" [src]="('http://lodehumberto.epizy.com/api/fotos/' + encuesta.foto_3)" height="50" width="50"></td> -->
+                    <td><img class="" [src]="('http://localhost/api/fotos/' + encuesta.foto_1)" height="50" width="50"></td>
+                    <td><img class="" [src]="('http://localhost/api/fotos/' + encuesta.foto_2)" height="50" width="50"></td>
+                    <td><img class="" [src]="('http://localhost/api/fotos/' + encuesta.foto_3)" height="50" width="50"></td>
+
+                </tr>
+              </tbody>
+            </table>
+    </div>
+</div>

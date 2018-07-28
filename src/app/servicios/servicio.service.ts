@@ -13,9 +13,9 @@ import { Usuario } from '../usuario';
 @Injectable()
 export class ServicioService {
 
-    // url = 'http://localhost/api';
+    url = 'http://localhost/api';
     // url = 'https://proyectocuatro.000webhostapp.com/api';
-    url = 'http://lodehumberto.epizy.com/api';
+    // url = 'http://lodehumberto.epizy.com/api';
 
       constructor(public http: Http, private authHttp: AuthHttp) { }
 
